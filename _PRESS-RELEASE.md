@@ -1,4 +1,4 @@
-# Project Name #
+# Scheming Lion #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -16,29 +16,30 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
  
-## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+## Hacker News Dashboard ##
+  > A full-stack web application that integrates the Hacker News API to provide a dashboard for data analysis and visualizations.
 
-## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+## Target Audience ##
+  > We expect Hacker News enthusiasts to be interested in the meta-data surrounding posts and comments to Hacker News.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > The Hacker News Dashboard allows users to track their posts and comments. Users can also see other posts, filtered by their interests. Data visualizations help users identify trends such as common words, successful titles, and key terms to boost personal karma scores.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > Analysis of content in Hacker News is currently done manually through scraping and anecdotal evidence. Burgeoning companies need data to drive successful launches.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > The Hacker News Dashboard provides near real-time analysis and insight into what makes posts virally successful. 
 
-## Quote from You ##
-  > A quote from a spokesperson in your company.
+## Team Slogan ##
+  > "Hack Hacker News."
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > Navigate www.tba.com. Enter a search term to view data related to your search.
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > "Before we were guessing at how to gain traction for our product on Hacker News. Using the Hacker News Dashboard, we were able to make data-driven decisions about our posts. Now we're a $10 billion company." -Fred Zirdung
 
-## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+## Hack the News! ##
+  > It's easy to make the front page of Hacker News with the help of the Dashboard. Begin your journey
+  to internet fame and fortune at www.tba.com.
