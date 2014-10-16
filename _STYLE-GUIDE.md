@@ -217,7 +217,7 @@ When writing any block of code that is logically subordinate to the line immedia
     var secondItem = getSecond();
     ```
 * Use a space between opening and closing parenthesis
-```javascript
+    ```javascript
     // good:
     if( condition ){
       response();
