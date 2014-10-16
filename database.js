@@ -85,21 +85,35 @@ var User = sequelize.define('User', {
   submitted: Sequelize.ARRAY(Sequelize.INTEGER)
 });
 
-Story.hasOne(User, {foreignKey: 'id'});
-Story.hasMany(Comment, {as: 'Comments'});
 
-Comment.hasOne(User,);
-Comment.hasOne(Story,);
 
-Job.hasOne(User,)
 
-Poll.hasMany(PollOption, {as: 'PollOptions'});
-Poll.hasMany(Comment)
-Poll.hasOne(User)
 
-PollOption.hasOne(Poll)
 
-User.hasMany(Comment)
-User.hasMany(Job)
-User.hasMany(Poll)
-User.hasMany(Story)
+
+
+
+
+
+
+////////////////////////////////////////////////
+//Based on the Firebase structure, most data
+//already exists in each table without the
+//need to add additional relationships.
+//However, here are some tradition relationships
+//that we have identified for possible future
+//use.
+////////////////////////////////////////////////
+// Story.hasOne(User, {foreignKey: 'id'});
+// Story.hasMany(Comment, {as: 'Comments'});
+// Comment.hasOne(User,);
+// Comment.hasOne(Story,);
+// Job.hasOne(User,)
+// Poll.hasMany(PollOption, {as: 'PollOptions'});
+// Poll.hasMany(Comment)
+// Poll.hasOne(User)
+// PollOption.hasOne(Poll)
+// User.hasMany(Comment)
+// User.hasMany(Job)
+// User.hasMany(Poll)
+// User.hasMany(Story)
