@@ -216,7 +216,18 @@ When writing any block of code that is logically subordinate to the line immedia
     var firstItem  = getFirst ();
     var secondItem = getSecond();
     ```
+* Use a space between opening and closing parenthesis
+```javascript
+    // good:
+    if( condition ){
+      response();
+    }
 
+    // bad:
+    if(condition){
+      response();
+    }
+    ```
 * Put `else` and `else if` statements on the same line as the ending curly brace for the preceding `if` block
     ```javascript
     // good:
