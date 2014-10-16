@@ -17,7 +17,7 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Hacker News Dashboard ##
-  > A full-stack web application that integrates the Hacker News API to provide a dashboard for data analysis and visualizations.
+  > The Hacker News Dashboard is a full-stack web application which utilizes the Hacker News API to provide a dashboard for data analysis and visualization.
 
 ## Target Audience ##
   > We expect Hacker News enthusiasts to be interested in the meta-data surrounding posts and comments to Hacker News.
