@@ -84,3 +84,22 @@ var User = sequelize.define('User', {
   karma: Sequelize.INTEGER,
   submitted: Sequelize.ARRAY(Sequelize.INTEGER)
 });
+
+Story.hasOne(User, {foreignKey: 'id'});
+Story.hasMany(Comment, {as: 'Comments'});
+
+Comment.hasOne(User,);
+Comment.hasOne(Story,);
+
+Job.hasOne(User,)
+
+Poll.hasMany(PollOption, {as: 'PollOptions'});
+Poll.hasMany(Comment)
+Poll.hasOne(User)
+
+PollOption.hasOne(Poll)
+
+User.hasMany(Comment)
+User.hasMany(Job)
+User.hasMany(Poll)
+User.hasMany(Story)
