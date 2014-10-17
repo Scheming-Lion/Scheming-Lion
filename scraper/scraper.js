@@ -29,12 +29,15 @@ to a file. We separate JSON objects with a '\n' character to make parsing easier
 */
 app.post('/', function(req, res) {
   fs.appendFile('items-1-1000.txt', JSON.stringify(req.body) + '\n', function(err, data) {
-    if(err) console.log(err);
-    else {
+    if (err) {
+      console.log(err);
+      console.log("ID NUMBER: " + req.body.id);
+      res.send(404, err);
+    } else {
       res.send(200,'sent');
     }
   });
-})
+});
 
 
 console.log('listening on 8000');
