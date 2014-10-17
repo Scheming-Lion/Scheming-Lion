@@ -1,0 +1,11 @@
+{
+  "name": "expPract",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "express": "^4.9.7"
+  }
+}

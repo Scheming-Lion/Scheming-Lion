@@ -1,0 +1,23 @@
+<html>
+<head> <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script></head>
+<body>
+
+
+<script>
+
+for(var i = 1; i < 1001; i++) {
+  $.get("https://hacker-news.firebaseio.com/v0/item/" + i + ".json", 
+    function(data) { 
+      console.log(JSON.stringify(data));
+      $.ajax({
+        type: "POST",
+        url: "http://localhost:8000/",
+        data: data
+      })
+    }
+  )
+}
+</script>
+</body>
+</html>
+
