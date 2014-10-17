@@ -25,4 +25,3 @@
   1. Enter 'node scraper.js' in the command line to start a local node server that will write data to your file.
 1. Open index.html from the scraper folder in your browser.
   * The first get requests will occur in 60 seconds
-
