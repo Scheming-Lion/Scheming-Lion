@@ -11,10 +11,10 @@ app.set('view engine', 'html');
 
 // tells the application where to go to find the views so that they can
 // be rendered.
-app.set('views', __dirname + '/client');
+app.set('views', __dirname + './../home');
 
 // tells the application where to go to find static files.
-app.use(express.static(__dirname + './../client'));
+app.use(express.static(__dirname + './../home'));
 
 // route for the home page.
 app.get('/', function(req, res) {
