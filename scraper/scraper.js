@@ -30,7 +30,7 @@ to a file. We separate JSON objects with a '\n' character to make parsing easier
 
 //change the text file to correspond to your job
 app.post('/', function(req, res) {
-  fs.appendFile('items-1001-2000.txt', JSON.stringify(req.body) + '\n', function(err, data) {
+  fs.appendFile('items-32988-x.txt', JSON.stringify(req.body) + '\n', function(err, data) {
     if (err) {
       console.log(err);
       console.log("ID NUMBER: " + req.body.id);
