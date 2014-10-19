@@ -38,7 +38,7 @@ Once the project moves into development, the press release can be used as a touc
   > Navigate www.tba.com. Enter a search term to view data related to your search.
 
 ## Customer Quote ##
-  > "Before we were guessing at how to gain traction for our product on Hacker News. Using the Hacker News Dashboard, we were able to make data-driven decisions about our posts. Now we're a $10 billion company." -Fred Zirdung
+  > "Before we were guessing at how to gain traction for our product on Hacker News. Using the Hacker News Dashboard, we were able to make data-driven decisions about our posts. Now we're a $10 billion company." -Fred 
 
 ## Hack the News! ##
   > It's easy to make the front page of Hacker News with the help of the Dashboard. Begin your journey
