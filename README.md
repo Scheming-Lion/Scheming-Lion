@@ -1,12 +1,12 @@
-# Project Name
+# Hacker News Dashboard
 
-> Pithy project description
+> The Hacker News Dashboard is a full-stack web application which utilizes the Hacker News API to provide a dashboard for data analysis and visualization.
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Will Burgo
+  - __Scrum Master__: Adam Back
+  - __Development Team Members__: Oleg Yanchinskiy, Justin Pinili
 
 ## Table of Contents
 
@@ -24,10 +24,10 @@
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
+- Node 0.10.32
+- Express ~4.9.0
+- MySQL ?
+- Angular ~1.2.18
 - etc
 
 ## Development
@@ -44,7 +44,7 @@ bower install
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://github.com/Scheming-Lion/Scheming-Lion/issues)
 
 
 ## Contributing
