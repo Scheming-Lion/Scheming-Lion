@@ -23,8 +23,22 @@
   1. Open your terminal
   1. Navigate to your root folder for Scheming-Lion, then to scraper folder.
   1. Enter 'node scraper.js' in the command line to start a local node server that will write data to your file.
+1. Disable power conservation settings on your mac.
+  1. Plug your computer into a charger.
+  1. Click the  in the upper left bar on your home screen.
+  1. Select system preferences
+  1. Select energy saver.
+  1. Check
+    * Prevent computer from sleeping automatically when the display is off
+    * Wake for Wi-Fi network access
+    * Kindly close pop-ups that warn you you're going to waste power
+  1. Uncheck
+    * Put hard disks to sleep when possible
+    * Enable Power Nap while plugged into a power adapter
 1. Open index.html from the scraper folder in your browser.
   * The first get requests will occur in 60 seconds
 
   ### Current index of data
   1. 1 - 1,154,966 items completed (Justin)
+  1. 6449476- 8474817 items completed (Adam)
+    Total on Oct. 19: 3,180,307
