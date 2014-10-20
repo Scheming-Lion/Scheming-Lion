@@ -72,9 +72,9 @@ body {
  */
 
 .main {
-  margin-top: 0px;
+  margin-top: -150px;
   padding: 20px;
-  position: inline;
+  position: relative;
 }
 @media (min-width: 768px) {
   .main {
