@@ -1,40 +1,92 @@
-var successItem = 0;
-    var failureItem = 0;
+angular.module('scraper', []);
 
-    var start = 0;
-    var end = 2000;
 
-    // setInterval(function() {
+angular.module('scraper',[])
+  .controller('MainController', function($scope, $interval, $http) {
 
-    //   for(var i = start; i < end; i++) {
-    //     $.get("https://hacker-news.firebaseio.com/v0/item/" + i + ".json",
-    //       function(data) {
-    //         $.ajax({
-    //           type: "POST",
-    //           url: "http://localhost:8000/",
-    //           data: data
-    //         })
-    //         .done(function(x) {
-    //           successItem++;
-    //           $(".win").html(""+successItem);
-    //         })
-    //         .fail(function(x) {
-    //           failureItem++;
-    //           $(".lose").html(""+failureItem);
-    //           console.log(x);
-    //         });
-    //       }
-    //     )
-    //     .fail(function(x) {
-    //           failureItem++;
-    //           $(".lose").html(""+failureItem);
-    //           console.log(x);
-    //         });
+    $scope.successItem = 0;
+    $scope.failureItem = 0;
 
-    //     start += 2000;
-    //     end += 2000;
-    //   }
+    $scope.startCount = 1;
+    $scope.endCount = 2000;
 
-    // }, 60000);
+    $scope.scraping = false;
 
-console.log("here");
+    // loop through the start count and stop count.
+    var pullAndwrite = function() {
+      if ( $scope.startCount < $scope.endCount ) {
+        for ( var i = $scope.startCount; i < $scope.endCount; i++) {
+          $http.get("https://hacker-news.firebaseio.com/v0/item/" + i + ".json")
+            // able to pull from the Hacker News API
+            .success(function(firebaseData) {
+              $http({
+                url: 'http://localhost:8000/',
+                method: 'POST',
+                data: firebaseData
+              })
+              // $http.post("http://localhost:8000/", firebaseData )
+              // able to store to the file *should be database*
+              .success(function(data, status, headers, config) {
+                $scope.successItem++;
+              })
+              // unable to store to the file
+              .error(function(data, status, headers, config) {
+                console.log(data);
+                $scope.failureItem++;
+              });
+            })
+            // unable to pull from the Hacker News API
+            .error(function(data, status, headers, config) {
+              console.log(data);
+              $scope.failureItem++;
+            });
+        }
+      } else {
+        for ( var i = $scope.startCount; i > $scope.endCount; i--) {
+          $http.get("https://hacker-news.firebaseio.com/v0/item/" + i + ".json")
+            // able to pull from the Hacker News API
+            .success(function(firebaseData) {
+              $http({
+                url: 'http://localhost:8000/',
+                method: 'POST',
+                data: firebaseData
+              })
+              // $http.post("http://localhost:8000/", firebaseData )
+              // able to store to the file *should be database*
+              .success(function(data, status, headers, config) {
+                $scope.successItem++;
+              })
+              // unable to store to the file
+              .error(function(data, status, headers, config) {
+                console.log(data);
+                $scope.failureItem++;
+              });
+            })
+            // unable to pull from the Hacker News API
+            .error(function(data, status, headers, config) {
+              console.log(data);
+              $scope.failureItem++;
+            });
+        }
+      }
+    };
+
+    $scope.startScrape = function() {
+      $scope.scraping = true;
+      pullAndwrite();
+
+      // every minute run http get and post requests.
+      $interval(function() {
+        pullAndwrite();
+      }, 60000);
+
+      if ($scope.startCount < $scope.endCount) {
+        $scope.startCount += 2000;
+        $scope.endCount += 2000;
+      } else {
+        $scope.startCount -= 2000;
+        $scope.endCount -= 2000;
+      }
+    };
+
+  });
