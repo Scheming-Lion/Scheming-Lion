@@ -18,24 +18,31 @@
           <ul>
             <li> Make sure you change the start value and end values so that we don't overlap data. </li>
             <li> Take a look at the Chrome Dev Tools Console and Terminal Console to see specific errors that happened as well</li>
-          </ol>
+          </ul>
           
-          <div class='text-center' ng-show="scraping">
-            <div class='row'>
-              Starting Spot: <input type="number" ng-model="startCount" placeholder='0' /></br>
+          <div class='row'>
+            <div class='col-md-4 col-md-offset-2' ng-show="!scraping">
+              <div class='row'>
+                Starting Spot: <input type="number" ng-model="startCount" placeholder='0' /></br>
+              </div>
+              <div class='row'>
+                Ending Spot:  <input type="number" ng-model="endCount" placeholder='2000' />
+              </div>
             </div>
-            <div class='row'>
-              Ending Spot:  <input type="number" ng-model="endCount" placeholder='2000' /></br>
+            <div class='col-md-3 col-md-offset-1' ng-show="!scraping">
+              </br>
+              </br>
+              <div class='row'>
+                <button class="btn btn-primary" ng-click="startScrape()"> Click Me. </button>
+              </div>
             </div>
-            <div class='row'>
-              <button ng-click="startScrape()"> Click Me. </button>
+
+            <div class='row text-center' ng-show="scraping">
+              <img class="scrapLion" src="assets/lion.gif" />
             </div>
-          </div>          
-          <div ng-show="!scraping">
-            <img class="scrapLion text-center" src="assets/lion.gif" />
           </div>
           
-          <div>
+          <div class='row'>
             Number of successfully downloaded items: {{ successItem }}<br>
             Number of unsuccessful downloaded items: {{ failureItem }}
           </div>
@@ -45,4 +52,3 @@
     <script src="main.js"></script>
   </body>
 </html>
-
