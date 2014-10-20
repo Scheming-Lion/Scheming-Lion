@@ -1,79 +1,67 @@
 var Sequelize = require('sequelize');
+var sequelize = new Sequelize("lionbase", "bc8fa3955e6d18", "83511e40", {
+  host: 'us-cdbr-azure-west-a.cloudapp.net'
+});
 
 var Story = sequelize.define('Story', {
   id: {type: Sequelize.INTEGER, primarykey: true},
   title: Sequelize.STRING,
-  by: Sequelize.STRING,
   createdAt: Sequelize.INTEGER,
-  text: Sequelize.STRING,
+  text: Sequelize.TEXT,
+  kids: Sequelize.TEXT,
   url: Sequelize.STRING,
   score: Sequelize.INTEGER,
-  //figure out how to use array
-  kids: Sequelize.ARRAY(Sequelize.STRING),
-  //optional below here?
   deleted: Sequelize.BOOLEAN,
   dead: Sequelize.BOOLEAN
 });
 
 var Comment = sequelize.define('Comment', {
   id: {type: Sequelize.INTEGER, primarykey: true},
-  by: Sequelize.STRING,
-  parent: Sequelize.INTEGER,
+  title: Sequelize.STRING,
   createdAt: Sequelize.INTEGER,
-  text: Sequelize.STRING,
-  //optional below here
-  //figure out how to use array
-  kids: Sequelize.ARRAY(Sequelize.INTEGER),
+  text: Sequelize.TEXT,
+  kids: Sequelize.TEXT,
   url: Sequelize.STRING,
   score: Sequelize.INTEGER,
-  title: Sequelize.STRING
   deleted: Sequelize.BOOLEAN,
   dead: Sequelize.BOOLEAN,
 });
 
 var Job = sequelize.define('Job', {
   id: {type: Sequelize.INTEGER, primarykey: true},
-  title: Sequelize.STRING
-  by: Sequelize.STRING,
+  title: Sequelize.STRING,
   createdAt: Sequelize.INTEGER,
   text: Sequelize.STRING,
+  kids: Sequelize.TEXT,
   url: Sequelize.STRING,
   score: Sequelize.INTEGER,
-  //figure out how to use array
+  deleted: Sequelize.BOOLEAN,
   dead: Sequelize.BOOLEAN,
-  kids: Sequelize.ARRAY(Sequelize.INTEGER),
-  deleted: Sequelize.BOOLEAN
 });
 
 var Poll = sequelize.define('Poll', {
   id: {type: Sequelize.INTEGER, primarykey: true},
   title: Sequelize.STRING,
-  by: Sequelize.STRING,
   createdAt: Sequelize.INTEGER,
-  parts: Sequelize.ARRAY(Sequelize.INTEGER),
-  text: Sequelize.STRING,
+  parts: Sequelize.TEXT,
+  text: Sequelize.TEXT,
+  kids: Sequelize.TEXT,
   url: Sequelize.STRING,
   score: Sequelize.INTEGER,
-  //figure out how to use array
-  kids: Sequelize.ARRAY(Sequelize.INTEGER),
-  //optional
   deleted: Sequelize.BOOLEAN,
   dead: Sequelize.BOOLEAN,
 });
 
 var PollOption = sequelize.define('PollOption', {
   id: {type: Sequelize.INTEGER, primarykey: true},
-  by: Sequelize.STRING,
-  parent: Sequelize.INTEGER,
-  score: Sequelize.INTEGER,
-  text: Sequelize.STRING,
+  title: Sequelize.STRING,
   createdAt: Sequelize.INTEGER,
-  //figure out how to use array
-  kids: Sequelize.ARRAY(Sequelize.INTEGER),
+  text: Sequelize.STRING,
+  kids: Sequelize.TEXT,
   url: Sequelize.STRING,
-  dead: Sequelize.BOOLEAN,
+  score: Sequelize.INTEGER,
   deleted: Sequelize.BOOLEAN,
-  title: Sequelize.STRING
+  dead: Sequelize.BOOLEAN,
 });
 
 var User = sequelize.define('User', {
@@ -82,18 +70,8 @@ var User = sequelize.define('User', {
   createdAt: Sequelize.INTEGER,
   delay: Sequelize.INTEGER,
   karma: Sequelize.INTEGER,
-  submitted: Sequelize.ARRAY(Sequelize.INTEGER)
+  submitted: Sequelize.TEXT
 });
-
-
-
-
-
-
-
-
-
-
 
 
 ////////////////////////////////////////////////
@@ -104,16 +82,24 @@ var User = sequelize.define('User', {
 //that we have identified for possible future
 //use.
 ////////////////////////////////////////////////
-// Story.hasOne(User, {foreignKey: 'id'});
-// Story.hasMany(Comment, {as: 'Comments'});
-// Comment.hasOne(User,);
-// Comment.hasOne(Story,);
-// Job.hasOne(User,)
-// Poll.hasMany(PollOption, {as: 'PollOptions'});
-// Poll.hasMany(Comment)
-// Poll.hasOne(User)
-// PollOption.hasOne(Poll)
-// User.hasMany(Comment)
-// User.hasMany(Job)
-// User.hasMany(Poll)
-// User.hasMany(Story)
+Story.hasOne(User, {foreignKey: 'id'});
+Story.hasMany(Comment, {as: 'Comments'});
+
+Poll.hasMany(PollOption, {as: 'PollOptions'});
+Poll.hasMany(Comment, {as: 'Comments'});
+
+User.hasMany(Comment, {as: 'Comments'});
+User.hasMany(Job, {as: 'Jobs'});
+User.hasMany(Poll, {as: 'Polls'});
+User.hasMany(PollOption, {as: 'PollOptions'});
+User.hasMany(Story, {as: 'Stories'});
+
+sequelize
+  .sync()
+  .complete(function(err) {
+    if (!!err) {
+      console.log('An error occured:', err);
+    } else {
+      console.log('Success!');
+    }
+  });
