@@ -39,7 +39,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', function(req, res) {
-  fs.appendFile('./data/test.txt', JSON.stringify(req.body) + '\n', function(err, data) {
+  fs.appendFile('./data/items-1154966-x.txt', JSON.stringify(req.body) + '\n', function(err, data) {
     if (err) {
       console.log(err);
       console.log("ID NUMBER: " + req.body.id);
