@@ -41,4 +41,5 @@
 ### Current index of data
 1. 1 - 1,692,160 items completed (Justin)
 1. 6,449,476 - 8,474,817 items completed (Adam)
+
 * Total on Oct. 12: 3,717,501
