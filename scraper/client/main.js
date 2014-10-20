@@ -73,20 +73,20 @@ angular.module('scraper',[])
 
     $scope.startScrape = function() {
       $scope.scraping = true;
-      pullAndwrite();
+      // pullAndwrite();
 
       // every minute run http get and post requests.
-      $interval(function() {
-        pullAndwrite();
-      }, 60000);
+      // $interval(function() {
+      //   pullAndwrite();
+      // }, 60000);
 
-      if ($scope.startCount < $scope.endCount) {
-        $scope.startCount += 2000;
-        $scope.endCount += 2000;
-      } else {
-        $scope.startCount -= 2000;
-        $scope.endCount -= 2000;
-      }
+      // if ($scope.startCount < $scope.endCount) {
+      //   $scope.startCount += 2000;
+      //   $scope.endCount += 2000;
+      // } else {
+      //   $scope.startCount -= 2000;
+      //   $scope.endCount -= 2000;
+      // }
     };
 
   });
