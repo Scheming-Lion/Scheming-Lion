@@ -12,6 +12,7 @@
     "angular": "~1.2.18",
     "angular-mocks": "~1.2.18",
     "ui-router": "~0.2.11",
-    "ngFx": "~1.0.4"
+    "ngFx": "~1.0.4",
+    "bootstrap": "~3.2.0"
   }
 }
