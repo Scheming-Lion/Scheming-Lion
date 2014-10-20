@@ -2,29 +2,37 @@
   <head> 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="main.js"></script>
+    <link href="library/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="library/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <script src="library/jquery/dist/jquery.min.js"></script>
+    <script src="library/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="library/angular/angular.min.js"></script>
+
   </head>
 
-  <body>
+  <body ng-app='scraper'>
 
-    Scraper.
-    <ol>
-      <li> Make sure you change the start value and end values so that we don't overlap data. </li>
-      <li> Take a look at the Chrome Console to see specific errors that happened </li>
-      <li> Take a look at the Terminal Console to see specific errors that happened as well</li>
-    </ol>
+    <h1> Scraper. </h1>
+    <div ng-controller='MainController'>
+      <ol>
+        <li> Make sure you change the start value and end values so that we don't overlap data. </li>
+        <li> Take a look at the Chrome Console to see specific errors that happened </li>
+        <li> Take a look at the Terminal Console to see specific errors that happened as well</li>
+      </ol>
 
-    <div>
-      Number of successfully downloaded items:<span class="win">0</span><br>
-      Number of unsuccessful downloaded items:<span class="lose">0</span>
+      <div ng-show="!scraping">
+        Starting Spot: <input type="number" ng-model="startCount" placeholder='0' />
+        Ending Spot: <input type="number" ng-model="endCount" placeholder='2000' />
+        <button ng-click="startScrape()"> Click Me. </button>
+      </div>
+
+      <div>
+        Number of successfully downloaded items: {{ successItem }}<br>
+        Number of unsuccessful downloaded items: {{ failureItem }}
+      </div>
     </div>
 
+  <script src="main.js"></script>
   </body>
 </html>
 

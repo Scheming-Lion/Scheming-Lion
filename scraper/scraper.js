@@ -21,7 +21,7 @@ var allowCrossDomain = function(req, res, next) {
 app.use(allowCrossDomain);
 
 //This allows us to properly parse data from the request (TODO: do we know why?)
-app.use(bodyParser.urlencoded());
+app.use(bodyParser());
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
@@ -39,7 +39,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', function(req, res) {
-  fs.appendFile('items-0-2000.txt', JSON.stringify(req.body) + '\n', function(err, data) {
+  fs.appendFile('./data/test.txt', JSON.stringify(req.body) + '\n', function(err, data) {
     if (err) {
       console.log(err);
       console.log("ID NUMBER: " + req.body.id);
