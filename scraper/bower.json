@@ -1,0 +1,18 @@
+{
+  "name": "hacker-news-dashboard",
+  "version": "0.0.0",
+  "authors": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "client/lib"
+  ],
+  "dependencies": {
+    "angular": "~1.2.18",
+    "angular-mocks": "~1.2.18",
+    "ui-router": "~0.2.11",
+    "ngFx": "~1.0.4",
+    "bootstrap": "~3.2.0"
+  }
+}

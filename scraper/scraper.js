@@ -20,16 +20,26 @@ var allowCrossDomain = function(req, res, next) {
 
 app.use(allowCrossDomain);
 
-//This allows us to properly barse data from the request (TODO: do we know why?)
-app.use(bodyParser.urlencoded());
+//This allows us to properly parse data from the request (TODO: do we know why?)
+app.use(bodyParser());
+
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+app.set('views', __dirname + '/client');
+app.use(express.static(__dirname + '/client'));
+
 
 /*
 We whip up a local node server that takes all post requests and writes the data
 to a file. We separate JSON objects with a '\n' character to make parsing easier.
 */
 
+app.get('/', function(req, res) {
+  res.render("index");
+});
+
 app.post('/', function(req, res) {
-  fs.appendFile('items-0-2000.txt', JSON.stringify(req.body) + '\n', function(err, data) {
+  fs.appendFile('./data/items-1154966-x.txt', JSON.stringify(req.body) + '\n', function(err, data) {
     if (err) {
       console.log(err);
       console.log("ID NUMBER: " + req.body.id);

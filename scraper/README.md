@@ -38,7 +38,8 @@
 1. Open index.html from the scraper folder in your browser.
   * The first get requests will occur in 60 seconds
 
-  ### Current index of data
-  1. 1 - 1,154,966 items completed (Justin)
-  1. 6449476- 8474817 items completed (Adam)
-    Total on Oct. 19: 3,180,307
+### Current index of data
+1. 1 - 1,692,160 items completed (Justin)
+1. 6,449,476 - 8,474,817 items completed (Adam)
+
+* Total on Oct. 12: 3,717,501
