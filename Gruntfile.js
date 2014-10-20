@@ -6,23 +6,30 @@ module.exports = function(grunt) {
     mochaTest: {
       test: {
         options: {
+          colors: true,
           reporter: 'spec'
         },
-        src: ['test/**/*.js']
+        src: ['testing/**/*.js']
       }
     },
 
     nodemon: {
       dev: {
-        script: 'server.js'
+        script: 'server/server.js'
       }
     },
 
     watch: {
       scripts: {
         files: [
-          'public/client/**/*.js',
-          'public/lib/**/*.js',
+          'server/*.js',
+          'server/**/*.js',
+          'scraper/*.js',
+          'scraper/*.html',
+          'scraper/client/*.js',
+          'scraper/client/*.html',
+          'scraper/client/*.html',
+          'client/*.html',
         ],
         tasks: ['mochaTest']
       }
