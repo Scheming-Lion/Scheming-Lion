@@ -4,3 +4,4 @@ scraper/data
 scraper/client/library
 scraper/node_modules
 coverage
+karma_html
