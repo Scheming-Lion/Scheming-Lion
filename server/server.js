@@ -27,7 +27,7 @@ app.get('/importData', function(req, res) {
   var options = {
         encoding: 'utf8'
       };
-  fs.readFile('./scraper/data/items-9001-32988.txt', options, function(err, data) {
+  fs.readFile('./scraper/data/items', options, function(err, data) {
     if (err) throw err;
     data = data.replace(/\n/g, ",");
     data = "["+data.slice(0,-2)+"}]";
