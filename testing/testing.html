@@ -8,6 +8,9 @@
   <script src='../node_modules/chai/chai.js'></script>
   <script src='../node_modules/sinon/lib/sinon.js'></script>
   <script src='../node_modules/jquery/dist/jquery.min.js'></script>
+  <script src='../node_modules/angular/angular.js'></script>
+  <script src='../node_modules/angular-route/angular-route.js'></script>
+  <script src='../node_modules/angular-mocks/angular-mocks.js'></script>
   <script>
     mocha.setup('bdd');
     window.expect = chai.expect;
@@ -18,8 +21,9 @@
 </head>
 <body>
   <div id="mocha">Mocha</div>
-  <script src='unit/unitSpecs.js'></script>
   <script src='integration/integrationSpecs.js'></script>
   <script src='end2end/end2endSpecs.js'></script>
+  <script src='../scraper/client/main.js'></script>
+  <script src='unit/unitSpecs.js'></script>
 </body>
 </html>
