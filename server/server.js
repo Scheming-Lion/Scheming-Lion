@@ -24,6 +24,49 @@ app.get('/', function(req, res) {
 
 app.get('/importData', function(req, res) {
   // will need to fsReadfile
+  var options = {
+        encoding: 'utf8'
+      };
+  fs.readFile('./scraper/data/items-1-1000.txt', options, function(err, data) {
+    if (err) throw err;
+    data = data.replace(/\n/g, ",");
+    data = "["+data.slice(0,-2)+"}]";
+    var items = JSON.parse(data);
+
+    var stories = [];
+    var comments = [];
+    var jobs = [];
+    var polls = [];
+    var pollOptions = [];
+    var users = [];
+
+    for (var i = 1; i < 20; i++) {
+      //console.log(items[i]);
+      // db.createItem(items[i]);
+      if (items[i].type === 'story') {
+        items[i].kids = JSON.stringify(items[i].kids);
+        stories.push(items[i]);
+      } else if (items[i].type === 'comment') {
+        comments.push(items[i]);
+      } else if (items[i].type === 'job') {
+        job.push(items[i]);
+      } else if (items[i].type === 'poll') {
+        poll.push(items[i]);
+      } else if (items[i].type === 'polloption') {
+        polloption.push(items[i]);
+      }
+
+      if (users.indexOf(items[i].by) === -1) {
+        users.push(items[i].by);
+      }
+    }
+
+    console.log(stories[0]);
+    console.log(comments[0]);
+
+    db.createStories(stories);
+
+  });
 });
 
 module.exports = app;
