@@ -5,8 +5,12 @@
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
   padding-top: 0px;
+  margin-top: 0px;
 }
-
+.sidebar{
+  margin-top: 0px;
+  padding-top: 0px;
+}
 
 /*
  * Global add-ons
@@ -72,7 +76,7 @@ body {
  */
 
 .main {
-  margin-top: -150px;
+  margin-top: 50px;
   padding: 20px;
   position: relative;
 }
