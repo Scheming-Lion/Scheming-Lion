@@ -1,9 +1,8 @@
 var Sequelize = require('sequelize');
-// var sequelize = new Sequelize("lionbase", "bc8fa3955e6d18", "83511e40", {
-//   host: 'us-cdbr-azure-west-a.cloudapp.net'
-// });
-var sequelize = new Sequelize("lionbase", "root", "zelda", {
-  host: 'localhost',
+
+// AZUREWEBSITE IMPLEMENTATION
+var sequelize = new Sequelize("lionbase", "bc8fa3955e6d18", "83511e40", {
+  host: 'us-cdbr-azure-west-a.cloudapp.net',
   define: {
     underscored: false,
     freezeTableName: false,
@@ -16,9 +15,24 @@ var sequelize = new Sequelize("lionbase", "root", "zelda", {
   }
 });
 
+// LOCAL HOST IMPLEMENTATION
+// var sequelize = new Sequelize("lionbase", "root", "zelda", {
+//   host: 'localhost',
+//   define: {
+//     underscored: false,
+//     freezeTableName: false,
+//     syncOnAssociation: true,
+//     charset: 'utf8',
+//     collate: 'utf8_general_ci',
+//     classMethods: {method1: function() {}},
+//     instanceMethods: {method2: function() {}},
+//     timestamps: true
+//   }
+// });
+
 module.exports.Story = sequelize.define('Story', {
   by: Sequelize.STRING,
-  id: {type: Sequelize.INTEGER, primarykey: true},
+  id: {type: Sequelize.INTEGER, primarykey: true, unique: true},
   kids: Sequelize.TEXT,
   score: Sequelize.INTEGER,
   time: Sequelize.INTEGER,
@@ -30,7 +44,7 @@ module.exports.Story = sequelize.define('Story', {
 
 module.exports.Comment = sequelize.define('Comment', {
   by: Sequelize.STRING,
-  id: {type: Sequelize.INTEGER, primarykey: true},
+  id: {type: Sequelize.INTEGER, primarykey: true, unique: true},
   kids: Sequelize.TEXT,
   parent: Sequelize.INTEGER,
   text: Sequelize.TEXT,
@@ -54,7 +68,7 @@ module.exports.Comment = sequelize.define('Comment', {
 
 module.exports.Poll = sequelize.define('Poll', {
   by: Sequelize.STRING,
-  id: {type: Sequelize.INTEGER, primarykey: true},
+  id: {type: Sequelize.INTEGER, primarykey: true, unique: true},
   kids: Sequelize.TEXT,
   parts: Sequelize.TEXT,
   score: Sequelize.INTEGER,
@@ -66,7 +80,7 @@ module.exports.Poll = sequelize.define('Poll', {
 
 module.exports.PollOption = sequelize.define('PollOption', {
   by: Sequelize.STRING,
-  id: {type: Sequelize.INTEGER, primarykey: true},
+  id: {type: Sequelize.INTEGER, primarykey: true, unique: true},
   kids: Sequelize.TEXT,
   parent: Sequelize.INTEGER,
   score: Sequelize.INTEGER,
@@ -81,18 +95,33 @@ module.exports.User = sequelize.define('User', {
   delay: Sequelize.INTEGER,
   id: {type: Sequelize.STRING, primarykey: true},
   karma: Sequelize.INTEGER,
-  submitted: Sequelize.TEXT
+  submitted: Sequelize.TEXT,
 });
 
 module.exports.create = function(itemName, items) {
   if (items.length > 1) {
-    itemName.bulkCreate(items)
-      .then(function() {
-        itemName.findAll()
-          .then(function(addedItems) {
-            console.log( "items created: " + addedItems.length );
-          });
-      });
+    console.log("creating");
+    console.log("length: " + items.length);
+
+    for (var start = 0; start < items.length; start+=1000) {
+      var end = start + 1000;
+
+      if (end > items.length) {
+        end = items.length;
+      }
+      
+      var subItems = items.slice(start, end);
+
+      itemName.bulkCreate(subItems)
+        .success(function() {
+          itemName.findAll()
+            .success(function(addedItems) {
+              console.log( "items created: " + addedItems.length );
+            });
+        });
+         
+    }
+
   }
 };
 
@@ -117,19 +146,15 @@ module.exports.create = function(itemName, items) {
 // User.hasMany(PollOption, {as: 'PollOptions'});
 // User.hasMany(Story, {as: 'Stories'});
 
-// Story.sync();
-// Comment.sync();
-// Job.sync();
-// Poll.sync();
-// PollOption.sync();
-// User.sync();
+sequelize.sync();
 
-sequelize
-  .sync({ force: true })
-  .complete(function(err) {
-    if (!!err) {
-      console.log('An error occured:', err);
-    } else {
-      console.log('Success!');
-    }
-  });
+// RESETS THE ENTIRE DATABASE
+// sequelize
+//   .sync({ force: true })
+//   .complete(function(err) {
+//     if (!!err) {
+//       console.log('An error occured:', err);
+//     } else {
+//       console.log('Success!');
+//     }
+//   });

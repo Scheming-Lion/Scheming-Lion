@@ -16,7 +16,8 @@
     "morgan": "~1.3.0",
     "mysql": "^2.5.2",
     "sequelize": "^2.0.0-rc2",
-    "serve-favicon": "~2.1.3"
+    "serve-favicon": "~2.1.3",
+    "split": "^0.3.0"
   },
   "devDependencies": {
     "blanket": "^1.1.6",
