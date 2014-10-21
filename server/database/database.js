@@ -1,4 +1,6 @@
 var Sequelize = require('sequelize');
+
+// AZUREWEBSITE IMPLEMENTATION
 var sequelize = new Sequelize("lionbase", "bc8fa3955e6d18", "83511e40", {
   host: 'us-cdbr-azure-west-a.cloudapp.net',
   define: {
@@ -12,7 +14,8 @@ var sequelize = new Sequelize("lionbase", "bc8fa3955e6d18", "83511e40", {
     timestamps: true
   }
 });
-                              //databasename user password
+
+// LOCAL HOST IMPLEMENTATION
 // var sequelize = new Sequelize("lionbase", "root", "zelda", {
 //   host: 'localhost',
 //   define: {
@@ -29,7 +32,7 @@ var sequelize = new Sequelize("lionbase", "bc8fa3955e6d18", "83511e40", {
 
 module.exports.Story = sequelize.define('Story', {
   by: Sequelize.STRING,
-  id: {type: Sequelize.INTEGER, primarykey: true},
+  id: {type: Sequelize.INTEGER, primarykey: true, unique: true},
   kids: Sequelize.TEXT,
   score: Sequelize.INTEGER,
   time: Sequelize.INTEGER,
@@ -41,7 +44,7 @@ module.exports.Story = sequelize.define('Story', {
 
 module.exports.Comment = sequelize.define('Comment', {
   by: Sequelize.STRING,
-  id: {type: Sequelize.INTEGER, primarykey: true},
+  id: {type: Sequelize.INTEGER, primarykey: true, unique: true},
   kids: Sequelize.TEXT,
   parent: Sequelize.INTEGER,
   text: Sequelize.TEXT,
@@ -65,7 +68,7 @@ module.exports.Comment = sequelize.define('Comment', {
 
 module.exports.Poll = sequelize.define('Poll', {
   by: Sequelize.STRING,
-  id: {type: Sequelize.INTEGER, primarykey: true},
+  id: {type: Sequelize.INTEGER, primarykey: true, unique: true},
   kids: Sequelize.TEXT,
   parts: Sequelize.TEXT,
   score: Sequelize.INTEGER,
@@ -77,7 +80,7 @@ module.exports.Poll = sequelize.define('Poll', {
 
 module.exports.PollOption = sequelize.define('PollOption', {
   by: Sequelize.STRING,
-  id: {type: Sequelize.INTEGER, primarykey: true},
+  id: {type: Sequelize.INTEGER, primarykey: true, unique: true},
   kids: Sequelize.TEXT,
   parent: Sequelize.INTEGER,
   score: Sequelize.INTEGER,
@@ -92,18 +95,33 @@ module.exports.User = sequelize.define('User', {
   delay: Sequelize.INTEGER,
   id: {type: Sequelize.STRING, primarykey: true},
   karma: Sequelize.INTEGER,
-  submitted: Sequelize.TEXT
+  submitted: Sequelize.TEXT,
 });
 
 module.exports.create = function(itemName, items) {
   if (items.length > 1) {
-    itemName.bulkCreate(items)
-      .then(function() {
-        itemName.findAll()
-          .then(function(addedItems) {
-            console.log( "items created: " + addedItems.length );
-          });
-      });
+    console.log("creating");
+    console.log("length: " + items.length);
+
+    for (var start = 0; start < items.length; start+=1000) {
+      var end = start + 1000;
+
+      if (end > items.length) {
+        end = items.length;
+      }
+      
+      var subItems = items.slice(start, end);
+
+      itemName.bulkCreate(subItems)
+        .success(function() {
+          itemName.findAll()
+            .success(function(addedItems) {
+              console.log( "items created: " + addedItems.length );
+            });
+        });
+         
+    }
+
   }
 };
 
@@ -128,15 +146,9 @@ module.exports.create = function(itemName, items) {
 // User.hasMany(PollOption, {as: 'PollOptions'});
 // User.hasMany(Story, {as: 'Stories'});
 
-// module.exports.Story.sync();
-// module.exports.Comment.sync();
-// module.exports.Job.sync();
-// module.exports.Poll.sync();
-// module.exports.PollOption.sync();
-// module.exports.User.sync();
-
 sequelize.sync();
 
+// RESETS THE ENTIRE DATABASE
 // sequelize
 //   .sync({ force: true })
 //   .complete(function(err) {

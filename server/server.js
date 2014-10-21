@@ -1,5 +1,7 @@
 var express = require('express');
+var Promise = require("bluebird");
 var fs = require('fs');
+var split = require('split');
 var db = require('./database/database.js');
 
 var app = express();
@@ -24,63 +26,62 @@ app.get('/', function(req, res) {
 
 app.get('/importData', function(req, res) {
   // will need to fsReadfile
-  var options = {
-        encoding: 'utf8'
-      };
-  fs.readFile('./scraper/data/items-1-1000.txt', options, function(err, data) {
-    if (err) throw err;
-    data = data.replace(/\n/g, ",");
-    data = "["+data.slice(0,-2)+"}]";
-    var items = JSON.parse(data);
+  var stories = [];
+  var comments = [];
+  var jobs = [];
+  var polls = [];
+  var pollOptions = [];
+  var users = [];
+  var username = [];
 
-    var stories = [];
-    var comments = [];
-    var jobs = [];
-    var polls = [];
-    var pollOptions = [];
-    var users = [];
-    var username = [];
-
-    for (var i = 1; i < items.length; i++) {
-      if (items[i].type === 'story') {
-        items[i].kids = JSON.stringify(items[i].kids);
-        stories.push(items[i]);
-      } else if (items[i].type === 'comment') {
-        items[i].kids = JSON.stringify(items[i].kids);
-        comments.push(items[i]);
-      // } else if (items[i].type === 'job') {
-      //   job.push(items[i]);
-      } else if (items[i].type === 'poll') {
-        items[i].kids = JSON.stringify(items[i].kids);
-        polls.push(items[i]);
-      } else if (items[i].type === 'polloption') {
-        pollOptions.push(items[i]);
+  // CHANGE TO NAME OF THE FILE
+  fs.createReadStream('./scraper/data/items-331114-1021067.txt', { encoding: 'utf8'})
+    .pipe(split())
+    .on('data', function (item) {
+      // console.log(item);
+      // console.log(JSON.parse(item).type);
+      item = JSON.parse(item);
+      if (item.type === 'story') {
+        item.kids = JSON.stringify(item.kids);
+        stories.push(item);
+      } else if (item.type === 'comment') {
+        item.kids = JSON.stringify(item.kids);
+        comments.push(item);
+      // } else if (item.type === 'job') {
+      //   job.push(item);
+      } else if (item.type === 'poll') {
+        item.kids = JSON.stringify(item.kids);
+        polls.push(item);
+      } else if (item.type === 'polloption') {
+        pollOptions.push(item);
       }
 
-      if (username.indexOf(items[i].by) === -1) {
+      if (username.indexOf(item.by) === -1) {
         var newUser = {
           about: null,
           created: null,
           delay: null,
-          id: items[i].by,
+          id: item.by,
           karma: null,
           submitted: null
         };
-        username.push(items[i].by);
+        username.push(item.by);
         users.push(newUser);
       }
-    }
+    })
+    .on('error', function(error) {
+      console.log(error);
+    })
+    .on('end', function() {
+      console.log('done');
+      console.log(stories.length);
+      db.create(db.Story, stories);
+      db.create(db.Comment, comments);
+      db.create(db.Poll, polls);
+      db.create(db.PollOption, pollOptions);
+      db.create(db.User, users);
+    });
 
-    // console.log(stories[0]);
-    // console.log(comments[0]);
-
-    db.create(db.Story, stories);
-    db.create(db.Comment, comments);
-    db.create(db.Poll, polls);
-    db.create(db.PollOption, pollOptions);
-    db.create(db.User, users);
-
-  });
 });
 
 module.exports = app;
