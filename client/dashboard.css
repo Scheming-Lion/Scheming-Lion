@@ -8,10 +8,14 @@ body {
   margin-top: 0px;
 }
 .sidebar{
-  margin-top: 0px;
+  margin-top: -25px;
   padding-top: 0px;
 }
-
+.userSearch {
+  width: 300px;
+  height: 35px;
+  border-radius: 3px;
+}
 /*
  * Global add-ons
  */
