@@ -1,9 +1,6 @@
 var Sequelize = require('sequelize');
-<<<<<<< HEAD
 
 // AZUREWEBSITE IMPLEMENTATION
-=======
->>>>>>> 6773e0a3fc553ddc8b4599d0bae7671d657f244d
 var sequelize = new Sequelize("lionbase", "bc8fa3955e6d18", "83511e40", {
   host: 'us-cdbr-azure-west-a.cloudapp.net',
   define: {
@@ -163,21 +160,9 @@ module.exports.create = function(itemName, items) {
 // User.hasMany(PollOption, {as: 'PollOptions'});
 // User.hasMany(Story, {as: 'Stories'});
 
-<<<<<<< HEAD
 sequelize.sync();
 
 // RESETS THE ENTIRE DATABASE
-=======
-// module.exports.Story.sync();
-// module.exports.Comment.sync();
-// module.exports.Job.sync();
-// module.exports.Poll.sync();
-// module.exports.PollOption.sync();
-// module.exports.User.sync();
-
-sequelize.sync();
-
->>>>>>> 6773e0a3fc553ddc8b4599d0bae7671d657f244d
 // sequelize
 //   .sync({ force: true })
 //   .complete(function(err) {
