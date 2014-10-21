@@ -10,7 +10,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('state2', {
     	views : {
 	    	'searchTopStories': {
-	    		template: "<input type='text' class='userSearch' placeholder='Search for top user stories...''>"
+	    		templateUrl: "state2.html"
 	    	}
 	    }
     })
