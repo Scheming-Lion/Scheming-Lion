@@ -1,9 +1,6 @@
 var Sequelize = require('sequelize');
-// var sequelize = new Sequelize("lionbase", "bc8fa3955e6d18", "83511e40", {
-//   host: 'us-cdbr-azure-west-a.cloudapp.net'
-// });
-var sequelize = new Sequelize("lionbase", "root", "zelda", {
-  host: 'localhost',
+var sequelize = new Sequelize("lionbase", "bc8fa3955e6d18", "83511e40", {
+  host: 'us-cdbr-azure-west-a.cloudapp.net',
   define: {
     underscored: false,
     freezeTableName: false,
@@ -15,6 +12,20 @@ var sequelize = new Sequelize("lionbase", "root", "zelda", {
     timestamps: true
   }
 });
+                              //databasename user password
+// var sequelize = new Sequelize("lionbase", "root", "zelda", {
+//   host: 'localhost',
+//   define: {
+//     underscored: false,
+//     freezeTableName: false,
+//     syncOnAssociation: true,
+//     charset: 'utf8',
+//     collate: 'utf8_general_ci',
+//     classMethods: {method1: function() {}},
+//     instanceMethods: {method2: function() {}},
+//     timestamps: true
+//   }
+// });
 
 module.exports.Story = sequelize.define('Story', {
   by: Sequelize.STRING,
@@ -86,22 +97,13 @@ module.exports.User = sequelize.define('User', {
 
 module.exports.create = function(itemName, items) {
   if (items.length > 1) {
-    for (var topItem = 1001; topItem < items.length; topItem += 1000) {
-      if (topItem > items.length) {
-        topItem = items.length;
-      }
-      var bottomItem = topItem - 1000;
-
-      subItems = items.slice(bottomItem, topItem);
-
-      itemName.bulkCreate(subItems)
-        .then(function() {
-          itemName.findAll()
-            .then(function(addedItems) {
-              console.log( "items created: " + addedItems.length );
-            });
-        });
-    }
+    itemName.bulkCreate(items)
+      .then(function() {
+        itemName.findAll()
+          .then(function(addedItems) {
+            console.log( "items created: " + addedItems.length );
+          });
+      });
   }
 };
 
@@ -126,19 +128,21 @@ module.exports.create = function(itemName, items) {
 // User.hasMany(PollOption, {as: 'PollOptions'});
 // User.hasMany(Story, {as: 'Stories'});
 
-// Story.sync();
-// Comment.sync();
-// Job.sync();
-// Poll.sync();
-// PollOption.sync();
-// User.sync();
+// module.exports.Story.sync();
+// module.exports.Comment.sync();
+// module.exports.Job.sync();
+// module.exports.Poll.sync();
+// module.exports.PollOption.sync();
+// module.exports.User.sync();
 
-sequelize
-  .sync({ force: true })
-  .complete(function(err) {
-    if (!!err) {
-      console.log('An error occured:', err);
-    } else {
-      console.log('Success!');
-    }
-  });
+sequelize.sync();
+
+// sequelize
+//   .sync({ force: true })
+//   .complete(function(err) {
+//     if (!!err) {
+//       console.log('An error occured:', err);
+//     } else {
+//       console.log('Success!');
+//     }
+//   });
