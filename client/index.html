@@ -10,7 +10,7 @@
     <link href="../client/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="dashboard.css" rel="stylesheet">
   </head>
-  <body>
+  <body ng-app="myApp">
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
           <div class="row col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2" >
@@ -42,14 +42,16 @@
         <div class="row">
           <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-            <li><a href="#">Overview</a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li>
+            <li><a ui-sref="state1" href="#">Overview</a></li>
+            <li><a ui-sref="state2" href="#">Search User Stories</a></li>
+            <li><a ui-sref="state3" href="#">Analytics</a></li>
+            <li><a ui-sref="state4" href="#">Export</a></li>
             </ul>
           </div>
           <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Hacker News DashBoard</h1>
+            <!-- VIEW BELLOW -->
+            <div ui-view class="col-sm-9 col-sm-offset-0 col-md-10 col-md-offset-0 view"></div>
           </div>
         </div>
       </div>
@@ -58,7 +60,8 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../client/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="client/lib/angular/angular.min.js"></script>
-    <script type="text/javascript" src="app/app.js"></script>
+    <script type="text/javascript" src="lib/ui-router/release/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="app/topStories.js"></script>
+    <script type="text/javascript" src="app/app.js"></script>
   </body>
 </html>
