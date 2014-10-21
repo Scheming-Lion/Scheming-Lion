@@ -86,13 +86,22 @@ module.exports.User = sequelize.define('User', {
 
 module.exports.create = function(itemName, items) {
   if (items.length > 1) {
-    itemName.bulkCreate(items)
-      .then(function() {
-        itemName.findAll()
-          .then(function(addedItems) {
-            console.log( "items created: " + addedItems.length );
-          });
-      });
+    for (var topItem = 1001; topItem < items.length; topItem += 1000) {
+      if (topItem > items.length) {
+        topItem = items.length;
+      }
+      var bottomItem = topItem - 1000;
+
+      subItems = items.slice(bottomItem, topItem);
+
+      itemName.bulkCreate(subItems)
+        .then(function() {
+          itemName.findAll()
+            .then(function(addedItems) {
+              console.log( "items created: " + addedItems.length );
+            });
+        });
+    }
   }
 };
 
