@@ -15,6 +15,14 @@ module.exports = function(grunt) {
       }
     },
 
+    shell: {
+        options: {
+        },
+        target: {
+            command: ['cd coverage/'].join('&&')
+        }
+    }
+
     watch: {
       scripts: {
         files: [
@@ -35,6 +43,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-shell');
 
   grunt.registerTask('server-dev', function (target) {
     // Running nodejs in a different process and displaying output on the main console
