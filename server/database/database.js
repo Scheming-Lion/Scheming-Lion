@@ -1,100 +1,100 @@
 var Sequelize = require('sequelize');
+// var sequelize = new Sequelize("lionbase", "bc8fa3955e6d18", "83511e40", {
+//   host: 'us-cdbr-azure-west-a.cloudapp.net'
+// });
+var sequelize = new Sequelize("lionbase", "root", "zelda", {
+  host: 'localhost',
+  define: {
+    underscored: false,
+    freezeTableName: false,
+    syncOnAssociation: true,
+    charset: 'utf8',
+    collate: 'utf8_general_ci',
+    classMethods: {method1: function() {}},
+    instanceMethods: {method2: function() {}},
+    timestamps: true
+  }
+});
 
-var Story = sequelize.define('Story', {
+module.exports.Story = sequelize.define('Story', {
+  by: Sequelize.STRING,
   id: {type: Sequelize.INTEGER, primarykey: true},
+  kids: Sequelize.TEXT,
+  score: Sequelize.INTEGER,
+  time: Sequelize.INTEGER,
   title: Sequelize.STRING,
-  by: Sequelize.STRING,
-  createdAt: Sequelize.INTEGER,
-  text: Sequelize.STRING,
-  url: Sequelize.STRING,
-  score: Sequelize.INTEGER,
-  //figure out how to use array
-  kids: Sequelize.ARRAY(Sequelize.STRING),
-  //optional below here?
-  deleted: Sequelize.BOOLEAN,
-  dead: Sequelize.BOOLEAN
+  type: Sequelize.STRING,
+  url: Sequelize.TEXT
 });
 
-var Comment = sequelize.define('Comment', {
-  id: {type: Sequelize.INTEGER, primarykey: true},
+
+module.exports.Comment = sequelize.define('Comment', {
   by: Sequelize.STRING,
+  id: {type: Sequelize.INTEGER, primarykey: true},
+  kids: Sequelize.TEXT,
   parent: Sequelize.INTEGER,
-  createdAt: Sequelize.INTEGER,
-  text: Sequelize.STRING,
-  //optional below here
-  //figure out how to use array
-  kids: Sequelize.ARRAY(Sequelize.INTEGER),
-  url: Sequelize.STRING,
-  score: Sequelize.INTEGER,
-  title: Sequelize.STRING
-  deleted: Sequelize.BOOLEAN,
-  dead: Sequelize.BOOLEAN,
+  text: Sequelize.TEXT,
+  time: Sequelize.INTEGER,
+  type: Sequelize.STRING
 });
 
-var Job = sequelize.define('Job', {
-  id: {type: Sequelize.INTEGER, primarykey: true},
-  title: Sequelize.STRING
+// Could not find a job schema..
+
+// module.exports.Job = sequelize.define('Job', {
+//   by: Sequelize.STRING,
+//   id: {type: Sequelize.INTEGER, primarykey: true},
+//   kids: Sequelize.TEXT,
+//   score: Sequelize.INTEGER,
+//   time: Sequelize.INTEGER,
+//   title: Sequelize.STRING,
+//   url: Sequelize.STRING,
+//   text: Sequelize.STRING,
+//   type: Sequelize.STRING
+// });
+
+module.exports.Poll = sequelize.define('Poll', {
   by: Sequelize.STRING,
-  createdAt: Sequelize.INTEGER,
-  text: Sequelize.STRING,
-  url: Sequelize.STRING,
-  score: Sequelize.INTEGER,
-  //figure out how to use array
-  dead: Sequelize.BOOLEAN,
-  kids: Sequelize.ARRAY(Sequelize.INTEGER),
-  deleted: Sequelize.BOOLEAN
-});
-
-var Poll = sequelize.define('Poll', {
   id: {type: Sequelize.INTEGER, primarykey: true},
+  kids: Sequelize.TEXT,
+  parts: Sequelize.TEXT,
+  score: Sequelize.INTEGER,
+  text: Sequelize.TEXT,
+  time: Sequelize.INTEGER,
   title: Sequelize.STRING,
-  by: Sequelize.STRING,
-  createdAt: Sequelize.INTEGER,
-  parts: Sequelize.ARRAY(Sequelize.INTEGER),
-  text: Sequelize.STRING,
-  url: Sequelize.STRING,
-  score: Sequelize.INTEGER,
-  //figure out how to use array
-  kids: Sequelize.ARRAY(Sequelize.INTEGER),
-  //optional
-  deleted: Sequelize.BOOLEAN,
-  dead: Sequelize.BOOLEAN,
+  type: Sequelize.STRING
 });
 
-var PollOption = sequelize.define('PollOption', {
-  id: {type: Sequelize.INTEGER, primarykey: true},
+module.exports.PollOption = sequelize.define('PollOption', {
   by: Sequelize.STRING,
+  id: {type: Sequelize.INTEGER, primarykey: true},
+  kids: Sequelize.TEXT,
   parent: Sequelize.INTEGER,
   score: Sequelize.INTEGER,
-  text: Sequelize.STRING,
-  createdAt: Sequelize.INTEGER,
-  //figure out how to use array
-  kids: Sequelize.ARRAY(Sequelize.INTEGER),
-  url: Sequelize.STRING,
-  dead: Sequelize.BOOLEAN,
-  deleted: Sequelize.BOOLEAN,
-  title: Sequelize.STRING
+  text: Sequelize.TEXT,
+  time: Sequelize.INTEGER,
+  type: Sequelize.STRING
 });
 
-var User = sequelize.define('User', {
-  id: {type: Sequelize.STRING, unique: true, primarykey: true},
+module.exports.User = sequelize.define('User', {
   about: Sequelize.STRING,
-  createdAt: Sequelize.INTEGER,
+  created: Sequelize.INTEGER,
   delay: Sequelize.INTEGER,
+  id: {type: Sequelize.STRING, primarykey: true},
   karma: Sequelize.INTEGER,
-  submitted: Sequelize.ARRAY(Sequelize.INTEGER)
+  submitted: Sequelize.TEXT
 });
 
-
-
-
-
-
-
-
-
-
-
+module.exports.create = function(itemName, items) {
+  if (items.length > 1) {
+    itemName.bulkCreate(items)
+      .then(function() {
+        itemName.findAll()
+          .then(function(addedItems) {
+            console.log( "items created: " + addedItems.length );
+          });
+      });
+  }
+};
 
 ////////////////////////////////////////////////
 //Based on the Firebase structure, most data
@@ -104,16 +104,32 @@ var User = sequelize.define('User', {
 //that we have identified for possible future
 //use.
 ////////////////////////////////////////////////
+
 // Story.hasOne(User, {foreignKey: 'id'});
 // Story.hasMany(Comment, {as: 'Comments'});
-// Comment.hasOne(User,);
-// Comment.hasOne(Story,);
-// Job.hasOne(User,)
+
 // Poll.hasMany(PollOption, {as: 'PollOptions'});
-// Poll.hasMany(Comment)
-// Poll.hasOne(User)
-// PollOption.hasOne(Poll)
-// User.hasMany(Comment)
-// User.hasMany(Job)
-// User.hasMany(Poll)
-// User.hasMany(Story)
+// Poll.hasMany(Comment, {as: 'Comments'});
+
+// User.hasMany(Comment, {as: 'Comments'});
+// User.hasMany(Job, {as: 'Jobs'});
+// User.hasMany(Poll, {as: 'Polls'});
+// User.hasMany(PollOption, {as: 'PollOptions'});
+// User.hasMany(Story, {as: 'Stories'});
+
+// Story.sync();
+// Comment.sync();
+// Job.sync();
+// Poll.sync();
+// PollOption.sync();
+// User.sync();
+
+sequelize
+  .sync({ force: true })
+  .complete(function(err) {
+    if (!!err) {
+      console.log('An error occured:', err);
+    } else {
+      console.log('Success!');
+    }
+  });
