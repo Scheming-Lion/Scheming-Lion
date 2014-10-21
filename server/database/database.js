@@ -14,20 +14,6 @@ var sequelize = new Sequelize("lionbase", "bc8fa3955e6d18", "83511e40", {
     timestamps: true
   }
 });
-                              //databasename user password
-// var sequelize = new Sequelize("lionbase", "root", "zelda", {
-//   host: 'localhost',
-//   define: {
-//     underscored: false,
-//     freezeTableName: false,
-//     syncOnAssociation: true,
-//     charset: 'utf8',
-//     collate: 'utf8_general_ci',
-//     classMethods: {method1: function() {}},
-//     instanceMethods: {method2: function() {}},
-//     timestamps: true
-//   }
-// });
 
 // LOCAL HOST IMPLEMENTATION
 // var sequelize = new Sequelize("lionbase", "root", "zelda", {
