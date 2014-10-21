@@ -27,7 +27,7 @@ app.get('/importData', function(req, res) {
   var options = {
         encoding: 'utf8'
       };
-  fs.readFile('./scraper/data/items-1-1000.txt', options, function(err, data) {
+  fs.readFile('./scraper/data/items-9001-32988.txt', options, function(err, data) {
     if (err) throw err;
     data = data.replace(/\n/g, ",");
     data = "["+data.slice(0,-2)+"}]";
@@ -39,32 +39,46 @@ app.get('/importData', function(req, res) {
     var polls = [];
     var pollOptions = [];
     var users = [];
+    var username = [];
 
-    for (var i = 1; i < 20; i++) {
-      //console.log(items[i]);
-      // db.createItem(items[i]);
+    for (var i = 1; i < items.length; i++) {
       if (items[i].type === 'story') {
         items[i].kids = JSON.stringify(items[i].kids);
         stories.push(items[i]);
       } else if (items[i].type === 'comment') {
+        items[i].kids = JSON.stringify(items[i].kids);
         comments.push(items[i]);
-      } else if (items[i].type === 'job') {
-        job.push(items[i]);
+      // } else if (items[i].type === 'job') {
+      //   job.push(items[i]);
       } else if (items[i].type === 'poll') {
-        poll.push(items[i]);
+        items[i].kids = JSON.stringify(items[i].kids);
+        polls.push(items[i]);
       } else if (items[i].type === 'polloption') {
-        polloption.push(items[i]);
+        pollOptions.push(items[i]);
       }
 
-      if (users.indexOf(items[i].by) === -1) {
-        users.push(items[i].by);
+      if (username.indexOf(items[i].by) === -1) {
+        var newUser = {
+          about: null,
+          created: null,
+          delay: null,
+          id: items[i].by,
+          karma: null,
+          submitted: null
+        };
+        username.push(items[i].by);
+        users.push(newUser);
       }
     }
 
-    console.log(stories[0]);
-    console.log(comments[0]);
+    // console.log(stories[0]);
+    // console.log(comments[0]);
 
-    db.createStories(stories);
+    db.create(db.Story, stories);
+    db.create(db.Comment, comments);
+    db.create(db.Poll, polls);
+    db.create(db.PollOption, pollOptions);
+    db.create(db.User, users);
 
   });
 });
