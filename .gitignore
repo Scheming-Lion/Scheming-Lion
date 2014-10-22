@@ -6,3 +6,4 @@ testing/reports
 scraper/scraped_data/*.txt
 coverage
 scraper/client/library
+client/lib
