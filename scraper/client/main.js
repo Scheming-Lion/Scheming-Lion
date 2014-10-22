@@ -8,9 +8,18 @@ angular.module('scraper',[])
     $scope.failureItem = 0;
 
     $scope.startCount = 1;
-    $scope.endCount = 2000;
+    $scope.endCount = 2001;
 
     $scope.scraping = false;
+
+    var validateBeforePull = function() {
+      if( Math.abs($scope.endCount - $scope.startCount) === 2000) {
+        return true;
+      } else {
+        alert('Please enter start and end values\nwith a difference of 2000.\nYour current difference is: ' + Math.abs($scope.endCount - $scope.startCount) );
+        return false;
+      }
+    }
 
     // loop through the start count and stop count.
     var pullAndWrite = function() {
@@ -72,32 +81,33 @@ angular.module('scraper',[])
     };
 
     $scope.startScrape = function() {
-      $scope.scraping = true;
-      pullAndWrite();
-      if ($scope.startCount < $scope.endCount) {
-        console.log('before outside', $scope.startCount);
-        $scope.startCount += 2000;
-        console.log('after outside', $scope.startCount);
-        $scope.endCount += 2000;
-      } else {
-          $scope.startCount -= 2000;
-          $scope.endCount -= 2000;
-      }
-
-      // every minute run http get and post requests.
-      $interval(function() {
+      if( validateBeforePull() ) {
+        $scope.scraping = true;
         pullAndWrite();
         if ($scope.startCount < $scope.endCount) {
-          console.log('before inside', $scope.startCount);
+          console.log('before outside', $scope.startCount);
           $scope.startCount += 2000;
-          console.log('after inside', $scope.startCount);
+          console.log('after outside', $scope.startCount);
           $scope.endCount += 2000;
         } else {
-          $scope.startCount -= 2000;
-          $scope.endCount -= 2000;
+            $scope.startCount -= 2000;
+            $scope.endCount -= 2000;
         }
-      }, 60000);
 
+        // every minute run http get and post requests.
+        $interval(function() {
+          pullAndWrite();
+          if ($scope.startCount < $scope.endCount) {
+            console.log('before inside', $scope.startCount);
+            $scope.startCount += 2000;
+            console.log('after inside', $scope.startCount);
+            $scope.endCount += 2000;
+          } else {
+            $scope.startCount -= 2000;
+            $scope.endCount -= 2000;
+          }
+        }, 60000);
+      }
     };
 
   });
