@@ -41,7 +41,6 @@ module.exports.Story = sequelize.define('Story', {
   url: Sequelize.TEXT
 });
 
-
 module.exports.Comment = sequelize.define('Comment', {
   by: Sequelize.STRING,
   id: {type: Sequelize.INTEGER, primarykey: true, unique: true},
@@ -52,19 +51,16 @@ module.exports.Comment = sequelize.define('Comment', {
   type: Sequelize.STRING
 });
 
-// Could not find a job schema..
-
-// module.exports.Job = sequelize.define('Job', {
-//   by: Sequelize.STRING,
-//   id: {type: Sequelize.INTEGER, primarykey: true},
-//   kids: Sequelize.TEXT,
-//   score: Sequelize.INTEGER,
-//   time: Sequelize.INTEGER,
-//   title: Sequelize.STRING,
-//   url: Sequelize.STRING,
-//   text: Sequelize.STRING,
-//   type: Sequelize.STRING
-// });
+module.exports.Job = sequelize.define('Job', {
+  by: Sequelize.STRING,
+  id: {type: Sequelize.INTEGER, primarykey: true},
+  score: Sequelize.INTEGER,
+  text: Sequelize.STRING,
+  time: Sequelize.INTEGER,
+  title: Sequelize.STRING,
+  type: Sequelize.STRING
+  url: Sequelize.STRING,
+});
 
 module.exports.Poll = sequelize.define('Poll', {
   by: Sequelize.STRING,
