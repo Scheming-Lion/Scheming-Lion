@@ -117,6 +117,7 @@ body {
 }
 
 
+<<<<<<< HEAD:client/assets/dashboard.css
 /*
  * Placeholder dashboard ideas
  */
@@ -143,3 +144,5 @@ body {
   height: 47px;
   margin:0 auto;
 }
+=======
+>>>>>>> (bug) took out a bug in ng-controller of search:client/dashboard.css
