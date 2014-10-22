@@ -1,5 +1,3 @@
-var expect = require('chai').expect;
-
 describe('Unit Tests', function() {
   it('should be true', function() {
     expect(true).to.be.true;
@@ -7,17 +5,23 @@ describe('Unit Tests', function() {
 });
 
 describe('Angular Scraper', function() {
-  it('should have a pullAndWrite function', function() {
-    var $scope = {};
-    var main = $controller('MainController', {$scope: $scope});
-    expect(main.pullAndWrite).to.be.a('function');
-  });
 
-  it('should have a startScrape function', function() {
-    var $scope = {};
-    var main = $controller('MainController', {$scope: $scope});
-    expect($scope.startScrape).to.be.a('function');
-  });
+  describe('Main Controller', function() {
+    beforeEach(module('scraper'));
 
+    var ctrl, scope;
+
+    beforeEach(inject(function($controller, $rootScope) {
+      scope = $rootScope.$new();
+      ctrl = $controller('MainController', {
+        $scope: scope
+      });
+    }));
+
+    it('should have a successItem set to 0', function() {
+      expect(scope.successItem).to.equal(0);
+    });
+  
+  });
 
 });

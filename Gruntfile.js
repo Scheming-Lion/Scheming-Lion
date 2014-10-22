@@ -3,32 +3,24 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    mochaTest: {
-      test: {
-        options: {
-          colors: true,
-          reporter: 'spec',
-          require: 'node_modules/blanket'
-        },
-        src: ['testing/**/*.js']
-      },
-      coverage: {
-        options: {
-          reporter: 'html-cov',
-          // use the quiet flag to suppress the mocha console output
-          quiet: true,
-          // specify a destination file to capture the mocha
-          // output (the quiet option does not suppress this)
-          captureFile: 'testing/coverage.html'
-        },
-        src: ['testing/**/*.js']
-      }
-    },
-
     nodemon: {
       dev: {
         script: 'server/server.js'
       }
+    },
+
+    karma: {
+      all: {
+        configFile: 'karma.conf.js'
+      }
+    },
+
+    shell: {
+        options: {
+        },
+        target: {
+            command: ['cd testing', 'cd reports', 'open specRunner.html', 'cd coverage', 'open index.html'].join('&&')
+        }
     },
 
     watch: {
@@ -43,14 +35,15 @@ module.exports = function(grunt) {
           'scraper/client/*.html',
           'client/*.html',
         ],
-        tasks: ['mochaTest']
+        tasks: ['karma']
       }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-nodemon');
+  grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-shell');
 
   grunt.registerTask('server-dev', function (target) {
     // Running nodejs in a different process and displaying output on the main console
@@ -69,7 +62,7 @@ module.exports = function(grunt) {
   // Main grunt tasks
   ////////////////////////////////////////////////////
 
-  grunt.registerTask('test', ['mochaTest']);
+  grunt.registerTask('test', ['karma', "shell"]);
 
   grunt.registerTask('build', []);
 
