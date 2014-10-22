@@ -1,3 +1,4 @@
+//Firebase has a module that will handle data updating through its event handling system
 var Firebase = require('firebase');
 
 var url = "https://hacker-news.firebaseio.com/v0/item/";
