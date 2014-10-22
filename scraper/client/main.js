@@ -13,7 +13,7 @@ angular.module('scraper',[])
     $scope.scraping = false;
 
     // loop through the start count and stop count.
-    var pullAndwrite = function() {
+    var pullAndWrite = function() {
       if ( $scope.startCount < $scope.endCount ) {
         for ( var i = $scope.startCount; i < $scope.endCount; i++) {
           $http.get("https://hacker-news.firebaseio.com/v0/item/" + i + ".json")
@@ -73,20 +73,31 @@ angular.module('scraper',[])
 
     $scope.startScrape = function() {
       $scope.scraping = true;
-      pullAndwrite();
+      pullAndWrite();
+      if ($scope.startCount < $scope.endCount) {
+        console.log('before outside', $scope.startCount);
+        $scope.startCount += 2000;
+        console.log('after outside', $scope.startCount);
+        $scope.endCount += 2000;
+      } else {
+          $scope.startCount -= 2000;
+          $scope.endCount -= 2000;
+      }
 
       // every minute run http get and post requests.
       $interval(function() {
-        pullAndwrite();
+        pullAndWrite();
+        if ($scope.startCount < $scope.endCount) {
+          console.log('before inside', $scope.startCount);
+          $scope.startCount += 2000;
+          console.log('after inside', $scope.startCount);
+          $scope.endCount += 2000;
+        } else {
+          $scope.startCount -= 2000;
+          $scope.endCount -= 2000;
+        }
       }, 60000);
 
-      if ($scope.startCount < $scope.endCount) {
-        $scope.startCount += 2000;
-        $scope.endCount += 2000;
-      } else {
-        $scope.startCount -= 2000;
-        $scope.endCount -= 2000;
-      }
     };
 
   });
