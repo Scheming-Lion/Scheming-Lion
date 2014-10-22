@@ -19,7 +19,7 @@ module.exports = function(grunt) {
         options: {
         },
         target: {
-            command: ['cd coverage/'].join('&&')
+            command: ['cd testing', 'cd reports', 'open specRunner.html', 'cd coverage', 'open index.html'].join('&&')
         }
     },
 
@@ -62,7 +62,7 @@ module.exports = function(grunt) {
   // Main grunt tasks
   ////////////////////////////////////////////////////
 
-  grunt.registerTask('test', ['karma']);
+  grunt.registerTask('test', ['karma', "shell"]);
 
   grunt.registerTask('build', []);
 

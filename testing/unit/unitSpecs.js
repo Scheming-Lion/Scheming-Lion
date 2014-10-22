@@ -19,7 +19,6 @@ describe('Angular Scraper', function() {
     }));
 
     it('should have a successItem set to 0', function() {
-      console.log('scope', scope.successItem);
       expect(scope.successItem).to.equal(0);
     });
   
