@@ -85,9 +85,7 @@ angular.module('scraper',[])
         $scope.scraping = true;
         pullAndWrite();
         if ($scope.startCount < $scope.endCount) {
-          console.log('before outside', $scope.startCount);
           $scope.startCount += 2000;
-          console.log('after outside', $scope.startCount);
           $scope.endCount += 2000;
         } else {
             $scope.startCount -= 2000;
@@ -98,9 +96,7 @@ angular.module('scraper',[])
         $interval(function() {
           pullAndWrite();
           if ($scope.startCount < $scope.endCount) {
-            console.log('before inside', $scope.startCount);
             $scope.startCount += 2000;
-            console.log('after inside', $scope.startCount);
             $scope.endCount += 2000;
           } else {
             $scope.startCount -= 2000;
