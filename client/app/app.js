@@ -1,19 +1,16 @@
 var app = angular.module('myApp', ["ui.router"]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
-  //
-  // For any unmatched url, redirect to /state1
-  $urlRouterProvider.otherwise("/state2");
-  //
-  // Now set up the states
+
   $stateProvider
-    .state('state2', {
-    	views : {
-	    	'searchTopStories': {
-	    		templateUrl: "state2.html"
-	    	}
-	    }
+    .state('search', {
+      views : {
+        'searchTopStories': {
+          templateUrl: "../partials/state2.html"
+        }
+      }
     })
+$urlRouterProvider.otherwise("/main");
 });
 
 // $stateProvider.state("home", {
