@@ -15,7 +15,7 @@ angular.module('scraper',[])
     // loop through the start count and stop count.
     var pullAndWrite = function() {
       if ( $scope.startCount < $scope.endCount ) {
-        for ( var i = $scope.startCount; i < $scope.endCount; i++) {
+        for ( var i = $scope.startCount; i <= $scope.endCount; i++) {
           $http.get("https://hacker-news.firebaseio.com/v0/item/" + i + ".json")
             // able to pull from the Hacker News API
             .success(function(firebaseData) {
@@ -42,7 +42,7 @@ angular.module('scraper',[])
             });
         }
       } else {
-        for ( var i = $scope.startCount; i > $scope.endCount; i--) {
+        for ( var i = $scope.startCount; i >= $scope.endCount; i--) {
           $http.get("https://hacker-news.firebaseio.com/v0/item/" + i + ".json")
             // able to pull from the Hacker News API
             .success(function(firebaseData) {
