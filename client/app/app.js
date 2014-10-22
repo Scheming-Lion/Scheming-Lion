@@ -11,23 +11,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('main.subviews', {
       views: {
         'search': {
-          templateUrl: 'search/search.html'
-        },
-        'topStories': {
-          templateUrl: 'topStories/topStories.html'
+          templateUrl: 'search/search.html',
+          // controller: 'search/search.js'
         }
+        // 'topStories': {
+        //   templateUrl: 'topStories/topStories.html'
+        // }
       }
     })
   
   $urlRouterProvider.otherwise("/main");
 });
-
-  // .state('home', {
-  //       url: '/home',
-  //       controller: 'HomeController',
-  //       templateUrl: 'home/home.html'
-  //     })
-
-  //     views : {
-  //       'searchTopStories': {
-  //         templateUrl: "../partials/state2.html"
