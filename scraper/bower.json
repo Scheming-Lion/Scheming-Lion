@@ -6,7 +6,7 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "client/lib"
+    "client/library"
   ],
   "dependencies": {
     "angular": "~1.2.18",

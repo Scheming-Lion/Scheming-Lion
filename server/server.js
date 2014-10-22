@@ -35,7 +35,7 @@ app.get('/importData', function(req, res) {
   var username = [];
 
   // CHANGE TO NAME OF THE FILE
-  fs.createReadStream('./scraper/data/items-331114-1021067.txt', { encoding: 'utf8'})
+  fs.createReadStream('./scraper/data/items-1154966-1692160.txt', { encoding: 'utf8'})
     .pipe(split())
     .on('data', function (item) {
       // console.log(item);
@@ -74,7 +74,6 @@ app.get('/importData', function(req, res) {
     })
     .on('end', function() {
       console.log('done');
-      console.log(stories.length);
       db.create(db.Story, stories);
       db.create(db.Comment, comments);
       db.create(db.Poll, polls);
