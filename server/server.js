@@ -24,63 +24,62 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
-app.get('/importData', function(req, res) {
-  // will need to fsReadfile
-  var stories = [];
-  var comments = [];
-  var jobs = [];
-  var polls = [];
-  var pollOptions = [];
-  var users = [];
-  var username = [];
+// app.get('/importData', function(req, res) {
+//   var stories = [];
+//   var comments = [];
+//   var jobs = [];
+//   var polls = [];
+//   var pollOptions = [];
+//   var users = [];
+//   var username = [];
 
-  // CHANGE TO NAME OF THE FILE
-  fs.createReadStream('./scraper/data/items-1154966-1692160.txt', { encoding: 'utf8'})
-    .pipe(split())
-    .on('data', function (item) {
-      // console.log(item);
-      // console.log(JSON.parse(item).type);
-      item = JSON.parse(item);
-      if (item.type === 'story') {
-        item.kids = JSON.stringify(item.kids);
-        stories.push(item);
-      } else if (item.type === 'comment') {
-        item.kids = JSON.stringify(item.kids);
-        comments.push(item);
-      // } else if (item.type === 'job') {
-      //   job.push(item);
-      } else if (item.type === 'poll') {
-        item.kids = JSON.stringify(item.kids);
-        polls.push(item);
-      } else if (item.type === 'polloption') {
-        pollOptions.push(item);
-      }
+//   // CHANGE TO NAME OF THE FILE
+//   fs.createReadStream('./scraper/data/items-1154966-1692160.txt', { encoding: 'utf8'})
+//     .pipe(split())
+//     .on('data', function (item) {
+//       // console.log(item);
+//       // console.log(JSON.parse(item).type);
+//       item = JSON.parse(item);
+//       if (item.type === 'story') {
+//         item.kids = JSON.stringify(item.kids);
+//         stories.push(item);
+//       } else if (item.type === 'comment') {
+//         item.kids = JSON.stringify(item.kids);
+//         comments.push(item);
+//       // } else if (item.type === 'job') {
+//       //   job.push(item);
+//       } else if (item.type === 'poll') {
+//         item.kids = JSON.stringify(item.kids);
+//         polls.push(item);
+//       } else if (item.type === 'polloption') {
+//         pollOptions.push(item);
+//       }
 
-      if (username.indexOf(item.by) === -1) {
-        var newUser = {
-          about: null,
-          created: null,
-          delay: null,
-          id: item.by,
-          karma: null,
-          submitted: null
-        };
-        username.push(item.by);
-        users.push(newUser);
-      }
-    })
-    .on('error', function(error) {
-      console.log(error);
-    })
-    .on('end', function() {
-      console.log('done');
-      db.create(db.Story, stories);
-      db.create(db.Comment, comments);
-      db.create(db.Poll, polls);
-      db.create(db.PollOption, pollOptions);
-      db.create(db.User, users);
-    });
+//       if (username.indexOf(item.by) === -1) {
+//         var newUser = {
+//           about: null,
+//           created: null,
+//           delay: null,
+//           id: item.by,
+//           karma: null,
+//           submitted: null
+//         };
+//         username.push(item.by);
+//         users.push(newUser);
+//       }
+//     })
+//     .on('error', function(error) {
+//       console.log(error);
+//     })
+//     .on('end', function() {
+//       console.log('done');
+//       db.create(db.Story, stories);
+//       db.create(db.Comment, comments);
+//       db.create(db.Poll, polls);
+//       db.create(db.PollOption, pollOptions);
+//       db.create(db.User, users);
+//     });
 
-});
+// });
 
 module.exports = app;
