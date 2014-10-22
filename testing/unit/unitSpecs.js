@@ -1,3 +1,5 @@
+
+
 describe('Unit Tests', function() {
   it('should be true', function() {
     expect(true).to.be.true;
@@ -24,4 +26,18 @@ describe('Angular Scraper', function() {
   
   });
 
+});
+
+describe('Top Stories', function() {
+  it('should return 10 items', function() {
+    //having difficulty figuring out how to do this because it depends on the view
+  })
+});
+
+describe('Track Posts', function() {
+  //TODO: hard because have to integrate HN firebase
+});
+
+describe('TrackUsers', function() {
+  //TODO
 });
