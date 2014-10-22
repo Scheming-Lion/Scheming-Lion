@@ -12,7 +12,6 @@ module.exports = function(config) {
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
 
-
     // list of files / patterns to load in the browser
     files: [
       // angular source
@@ -36,6 +35,15 @@ module.exports = function(config) {
     exclude: [
         'karma.conf.js'
     ],
+
+    coverageReporter: {
+      dir: 'testing/reports/coverage',
+      subdir: '.'
+    },
+
+    htmlReporter: {
+      outputFile: 'testing/reports/specRunner.html'
+    },
 
 
     // preprocess matching files before serving them to the browser
