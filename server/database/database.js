@@ -112,13 +112,13 @@ module.exports.create = function(itemName, items) {
       
       var subItems = items.slice(start, end);
 
-      itemName.bulkCreate(subItems)
-        .success(function() {
-          itemName.findAll()
-            .success(function(addedItems) {
-              console.log( "items created: " + addedItems.length );
-            });
-        });
+      itemName.bulkCreate(subItems);
+        // .success(function() {
+        //   itemName.findAll()
+        //     .success(function(addedItems) {
+        //       console.log( "items created: " + addedItems.length );
+        //     });
+        // });
          
     }
 
