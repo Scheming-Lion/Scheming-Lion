@@ -4,3 +4,4 @@ node_modules
 scraper/data
 scraper/scraped_data/*.txt
 testing/reports
+server/database/databaseConfig.js
