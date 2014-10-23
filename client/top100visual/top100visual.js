@@ -1,28 +1,54 @@
 angular.module('myApp.top100visual', [] )
 
-.controller('top100visualController', function($scope, $http, $firebase){
-  $scope.dood = "dooood";
+  .controller('top100visualController', function($scope, $http, $firebase, $q){
+    $scope.dood = "dooood";
 
-  var ref = new Firebase("https://hacker-news.firebaseio.com/v0/topstories");
-  // create an AngularFire reference to the data
-  var sync = $firebase(ref);
-  // download the data into a local object
-  $scope.data = sync.$asArray();
+    var hackerNewsReference = new Firebase("https://hacker-news.firebaseio.com/v0/topstories");
+    // create an AngularFire reference to the data
+    var top100stories = $firebase(hackerNewsReference);
+    // download the data into a local object
+    top100stories = top100stories.$asArray();
 
-  $scope.stories = [];
+    $scope.storyTitles = [];
+    $scope.wordCount = {};
 
-  $scope.data.$loaded()
-    .then(function() {
-      console.log($scope.data.$getRecord("0").$value);
-      for (var index = 0; index < 100; index++) {
+    var grabTitles = function() {
+
+      for (var index = 0; index < 99; index++) {
         var string = "" + index;
-        // console.log(string);
-        $http.get('https://hacker-news.firebaseio.com/v0/item/' + $scope.data.$getRecord(string).$value + ".json")
+        $http.get('https://hacker-news.firebaseio.com/v0/item/' + top100stories.$getRecord(string).$value + ".json")
           .success(function(data) {
-            $scope.stories.push(data.title);
+            $scope.storyTitles.push(data.title);
           });
       }
-    });
+      $http.get('https://hacker-news.firebaseio.com/v0/item/' + top100stories.$getRecord("99").$value + ".json")
+          .success(function(data) {
+            $scope.storyTitles.push(data.title);
+            $scope.wordCount = countWords($scope.storyTitles);
+          });
+    };
 
+    var countWords = function(titles) {
+      console.log("here");
+      var totalWordCount = {};
 
-});
+      for (var title = 0; title < titles.length; title++) {
+        var words = titles[title].split(" ");
+        for (var word = 0; word < words.length; word++) {
+          if (totalWordCount[words[word]] === undefined) {
+            totalWordCount[words[word]] = 1;
+          } else {
+            totalWordCount[words[word]]++;
+          }
+        }
+      }
+
+      return totalWordCount;
+    };
+
+    top100stories.$loaded()
+      .then(function() {
+        grabTitles();
+      });
+
+  });
