@@ -1,9 +1,6 @@
 .DS_Store
+client/lib
 node_modules
 scraper/data
-scraper/node_modules
-testing/reports
 scraper/scraped_data/*.txt
-coverage
-scraper/client/library
-client/lib
+testing/reports

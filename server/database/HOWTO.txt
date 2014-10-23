@@ -1,13 +1,16 @@
 Use this file as a guide for inserting items into the database.
 
-1. Navigage to server/server.js and open in a text editor
-2. Uncomment lines 41-97
-  -We don't want production server to see these, but we want to use them internally
-3. Change line 51 to the directory and file which stores your Hacker News API data
+1. Navigate to server/server.js and open in a text editor
+2. Uncomment lines 48-118
+  -We don't want production server to see these, but we want to use them internally.
+3. Change line 59 to the directory and file which stores your Hacker News API data
   -This will likely be in the scraper_data folder of the Scraper repository
-4. Remove the last line character from the .txt file you are inserting into the database. There should be no empty lines
-5. In the terminal, run app.js from the main Scheming-Lion directory
+4. Remove the last new line character from the .txt file you are inserting into the database. There should be no empty lines
+5. In the terminal, run app.js from the main Scheming-Lion directory: ```node --max-old-space-size=8192 app.js```
 
-WARNING: This next step will use all of your computer's resources. Do not expect to complete work side-by-side while inserting items.
+WARNING: This next step will use all of your computer's resources (dedicating 8g of RAM to your server). Do not expect to complete work side-by-side while inserting items.
 
-6. Open a browser. Type 'http://localhost:3000/importData'
+6. Open a browser. Type 'http://localhost:3000/importData'.
+  - Your terminal will let you know that the mysql inserts are happening.
+  - If you see sequelize constraint errors, it is preventing duplicates to be entered in the db.
+  - It took roughly 30 minutes to insert a file with 700,000 lines.

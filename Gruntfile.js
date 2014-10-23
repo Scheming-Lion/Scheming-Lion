@@ -28,11 +28,13 @@ module.exports = function(grunt) {
         files: [
           'server/*.js',
           'server/**/*.js',
+          //------- need to be removed? ------//
           'scraper/*.js',
           'scraper/*.html',
           'scraper/client/*.js',
           'scraper/client/*.html',
           'scraper/client/*.html',
+          //---------------------------------//
           'client/*.html',
         ],
         tasks: ['karma']
