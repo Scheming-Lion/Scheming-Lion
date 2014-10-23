@@ -21,20 +21,20 @@ $.get(url + "/user/" + username + ".json", function(userProfile, status) {
       if(items.length === storyIds.length) {
         stories = items.filter(function(story) {
           return story.score;
-        })
-        stories.sort(sortByScore)
+        });
+        stories.sort(sortByScore);
         topStories = stories.slice(0,10);
         console.log(topStories);
         $('.view').append('<h3>' + 'Top Stories By '+ username +'<br>' + '</h3>');
         for(var i = 0; i < topStories.length; i++){
           var story = "<div class='story'>" + '<strong>Title: </strong>'+  topStories[i].title + '<br>' +
                       "<strong>Score: </strong>" + topStories[i].score + '<br>' +
-                      "<strong>Link: </strong>" + topStories[i].url +'<br>'+'<br>' + "</div>"
+                      "<strong>Link: </strong>" + topStories[i].url +'<br>'+'<br>' + "</div>";
           $('.view').append(story);
         }
       }
-    })
-  })
+    });
+  });
 });
 
 
