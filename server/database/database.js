@@ -53,7 +53,7 @@ module.exports.Comment = sequelize.define('Comment', {
 
 module.exports.Job = sequelize.define('Job', {
   by: Sequelize.STRING,
-  id: {type: Sequelize.INTEGER, primarykey: true},
+  id: {type: Sequelize.INTEGER, primarykey: true, unique: true},
   score: Sequelize.INTEGER,
   text: Sequelize.STRING,
   time: Sequelize.INTEGER,
