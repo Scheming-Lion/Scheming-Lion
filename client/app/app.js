@@ -2,7 +2,8 @@ var app = angular.module('myApp', [
   "ui.router",
   "myApp.main",
   "myApp.top100visual",
-  "firebase"
+  "firebase",
+  "d3"
   ]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
