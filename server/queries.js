@@ -107,7 +107,7 @@ module.exports.getStory = function(id, callback) {
 }
 
 module.exports.getComment = function(id, callback) {
-  Story
+  Comment
   .find({ where: { id: id } })
   .complete(function(err, comment) {
     if (!!err) {
@@ -120,7 +120,7 @@ module.exports.getComment = function(id, callback) {
   })
 }
 module.exports.getJob = function(id, callback) {
-  Story
+  Job
   .find({ where: { id: id } })
   .complete(function(err, job) {
     if (!!err) {
@@ -134,7 +134,7 @@ module.exports.getJob = function(id, callback) {
 }
 
 module.exports.getPoll = function(id, callback) {
-  Story
+  Poll
   .find({ where: { id: id } })
   .complete(function(err, poll) {
     if (!!err) {
@@ -148,7 +148,7 @@ module.exports.getPoll = function(id, callback) {
 }
 
 module.exports.getPollOption = function(id, callback) {
-  Story
+  PollOption
   .find({ where: { id: id } })
   .complete(function(err, pollOpt) {
     if (!!err) {
@@ -170,10 +170,17 @@ module.exports.getUser = function(id, callback) {
     } else if (!user) {
       console.log('No user with that id found.')
     } else {
-      console.log('Hello ' + user.id + '!')
-      console.log('All attributes of user:', user.values)
+      callback(user);
     }
   })  
+}
+
+//gets all comments between two times. Still need to keep working
+module.exports.getCommentsBetweenTimes = function(time1, time2, callback) {
+
+  Comment.findAll({ where: ["time > ?", time1] }).success(function(comments) {
+    callback(comments);
+  })
 }
 
 /* non-querying helper functions. to be used as callbacks in the above functions */
@@ -199,6 +206,34 @@ module.exports.checkKeywordComments = function(comments, keyword) {
     return comment.text.indexOf(keyword) > -1;
   });
 }
+
+module.exports.sortByScore = function(a,b) {
+  if (a.score < b.score)
+     return 1;
+  if (a.score > b.score)
+    return -1;
+  return 0;
+}
+module.exports.filterComments = function(comments) {
+  return comments.filter(function(comment) {
+    return comment.type === "comment";
+  });
+}
+
+
+/* full-feature functions */
+
+module.exports.getUserTopNStories = function(n, userid, callback) {
+  module.exports.getUser(userid,function(user) {
+    module.exports.getCommentsFromIds(user.submitted, function(items) {
+      var comments = module.exports.filterComments(items);
+      comments.sort(sortByScore);
+      callback(comments.slice(0, n));
+    })
+  })
+}
+
+
 
 
 
