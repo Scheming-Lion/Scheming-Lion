@@ -30,11 +30,15 @@ $.get(url + "/user/" + username + ".json", function(userProfile, status) {
           var story = "<div class='story'>" + '<strong>Title: </strong>'+  topStories[i].title + '<br>' +
                       "<strong>Score: </strong>" + topStories[i].score + '<br>' +
                       "<strong>Link: </strong>" + topStories[i].url +'<br>'+'<br>' + "</div>";
+<<<<<<< HEAD
 <<<<<<< HEAD:client/topStories/topStories.js
           // $('.view').append(story);
 =======
           $('.view').append(story);
 >>>>>>> (feat) re-organized some files on the front end. also started top100 feature.:client/topStories/topStories.js
+=======
+          // $('.view').append(story);
+>>>>>>> (feat) able to grab the titles from the top 100 stories.
         }
       }
     });
