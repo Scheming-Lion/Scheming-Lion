@@ -58,8 +58,8 @@ module.exports.Job = sequelize.define('Job', {
   text: Sequelize.STRING,
   time: Sequelize.INTEGER,
   title: Sequelize.STRING,
-  type: Sequelize.STRING
-  url: Sequelize.STRING,
+  type: Sequelize.STRING,
+  url: Sequelize.STRING
 });
 
 module.exports.Poll = sequelize.define('Poll', {
