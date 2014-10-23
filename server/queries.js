@@ -196,9 +196,10 @@ module.exports.getCommentsFromIds = function(commentIds, callback) {
 //Takes an array of comments (retrieved from a previous query), and returns ONLY those comments containing the keyword.
 module.exports.checkKeywordComments = function(comments, keyword) {
   return comments.filter(function(comment) {
-    return comment.indexOf(keyword);
+    return comment.text.indexOf(keyword) > -1;
   });
 }
+
 
 
 
