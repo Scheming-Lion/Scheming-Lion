@@ -31,12 +31,19 @@ var allowCrossDomain = function(req, res, next) {
     }
 };
 
+// allows other domains to interact with the server.
 app.use(allowCrossDomain);
 
 // route for the home page.
 app.get('/', function(req, res) {
   res.render('index');
 });
+
+// Only used to import data into the mysql database.
+
+/******************************************
+ ******************************************
+
 
 app.get('/importData', function(req, res) {
   var stories = [];
@@ -47,29 +54,40 @@ app.get('/importData', function(req, res) {
   var users = [];
   var username = [];
 
-  // CHANGE TO NAME OF THE FILE
-  fs.createReadStream('../../../Desktop/items-7541474-8474817.txt', { encoding: 'utf8'})
+  // change to location and name of the file.
+
+  fs.createReadStream('./scraper/data/items-1154966-1692160.txt', { encoding: 'utf8'})
     .pipe(split())
     .on('data', function (item) {
-      // console.log(item);
-      // console.log(JSON.parse(item).type);
       item = JSON.parse(item);
+      
       if (item.type === 'story') {
+      
         item.kids = JSON.stringify(item.kids);
         stories.push(item);
+      
       } else if (item.type === 'comment') {
+      
         item.kids = JSON.stringify(item.kids);
         comments.push(item);
+      
       } else if (item.type === 'job') {
+      
         job.push(item);
+      
       } else if (item.type === 'poll') {
+      
         item.kids = JSON.stringify(item.kids);
         polls.push(item);
+      
       } else if (item.type === 'polloption') {
+      
         pollOptions.push(item);
+      
       }
 
       if (username.indexOf(item.by) === -1) {
+        
         var newUser = {
           about: null,
           created: null,
@@ -78,9 +96,11 @@ app.get('/importData', function(req, res) {
           karma: null,
           submitted: null
         };
+        
         username.push(item.by);
         users.push(newUser);
       }
+
     })
     .on('error', function(error) {
       console.log(error);
@@ -96,5 +116,8 @@ app.get('/importData', function(req, res) {
     });
 
 });
+
+ ******************************************
+ ******************************************/
 
 module.exports = app;

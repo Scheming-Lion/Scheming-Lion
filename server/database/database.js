@@ -121,6 +121,8 @@ module.exports.create = function(itemName, items) {
   }
 };
 
+sequelize.sync();
+
 ////////////////////////////////////////////////
 //Based on the Firebase structure, most data
 //already exists in each table without the
@@ -142,7 +144,6 @@ module.exports.create = function(itemName, items) {
 // User.hasMany(PollOption, {as: 'PollOptions'});
 // User.hasMany(Story, {as: 'Stories'});
 
-sequelize.sync();
 
 // RESETS THE ENTIRE DATABASE
 // sequelize
