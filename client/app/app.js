@@ -1,6 +1,7 @@
 var app = angular.module('myApp', [
   "ui.router",
   "myApp.main",
+  "myApp.top100visual",
   "firebase"
   ]);
 
@@ -19,6 +20,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
         },
         'topStories': {
           templateUrl: 'topStories/topStories.html'
+        },
+        'top100visual': {
+          controller: 'top100visualController',
+          templateUrl: 'top100visual/top100visual.html'
         }
       }
     });
