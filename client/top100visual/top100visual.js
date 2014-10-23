@@ -1,5 +1,4 @@
 angular.module('myApp.top100visual', [] )
-
   .controller('top100visualController', function($scope, $http, $firebase, $q, myName){
     $scope.dood = "dooood";
 
