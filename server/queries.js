@@ -90,9 +90,9 @@ sequelize
 
 
 /*
-Helper queries
+Helper queries. 
 */
-function getStory(id, callback) {
+module.exports.getStory = function(id, callback) {
   Story
   .find({ where: { id: id } })
   .complete(function(err, story) {
@@ -106,7 +106,7 @@ function getStory(id, callback) {
   })
 }
 
-function getComment(id, callback) {
+module.exports.getComment = function(id, callback) {
   Story
   .find({ where: { id: id } })
   .complete(function(err, comment) {
@@ -119,7 +119,7 @@ function getComment(id, callback) {
     }
   })
 }
-function getJob(id, callback) {
+module.exports.getJob = function(id, callback) {
   Story
   .find({ where: { id: id } })
   .complete(function(err, job) {
@@ -133,7 +133,7 @@ function getJob(id, callback) {
   })
 }
 
-function getPoll(id, callback) {
+module.exports.getPoll = function(id, callback) {
   Story
   .find({ where: { id: id } })
   .complete(function(err, poll) {
@@ -147,7 +147,7 @@ function getPoll(id, callback) {
   })
 }
 
-function getPollOption(id, callback) {
+module.exports.getPollOption = function(id, callback) {
   Story
   .find({ where: { id: id } })
   .complete(function(err, pollOpt) {
@@ -161,7 +161,7 @@ function getPollOption(id, callback) {
   })
 }
 
-function getUser(id, callback) {
+module.exports.getUser = function(id, callback) {
   User
   .find({ where: { id: 'sama' } })
   .complete(function(err, user) {
@@ -175,3 +175,30 @@ function getUser(id, callback) {
     }
   })  
 }
+
+/* non-querying helper functions. to be used as callbacks in the above functions */
+
+
+//takes an array of comment ids (most likely from a query that returns a story or parent comments)
+//and creates an array of the actual comments, and then calls a callback on this array
+module.exports.getCommentsFromIds = function(commentIds, callback) {
+  var comments = [];
+  commentIds.foreach(function(id) {
+    module.exports.getComment(id, function(comment) {
+      comments.push(comment);
+      if(comments.length === commentIds.length) {
+        callback(comments);
+      }
+    })
+  });
+}
+
+//Takes an array of comments (retrieved from a previous query), and returns ONLY those comments containing the keyword.
+module.exports.checkKeywordComments = function(comments, keyword) {
+  return comments.filter(function(comment) {
+    return comment.indexOf(keyword);
+  });
+}
+
+
+
