@@ -30,13 +30,3 @@ app.config(function($stateProvider, $urlRouterProvider) {
   
   $urlRouterProvider.otherwise("/main");
 });
-
-  // .state('home', {
-  //       url: '/home',
-  //       controller: 'HomeController',
-  //       templateUrl: 'home/home.html'
-  //     })
-
-  //     views : {
-  //       'searchTopStories': {
-  //         templateUrl: "../partials/state2.html"
