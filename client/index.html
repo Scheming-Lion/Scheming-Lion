@@ -21,7 +21,7 @@
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right">
-                <li class='subNav'><a href="#">About</a></li>
+                <li class='subNav'><a href="https://github.com/Scheming-Lion/Scheming-Lion">About</a></li>
                 <li class='subNav'><a href="#">Help</a></li>
               </ul>
               <form class="navbar-form navbar-right">
@@ -37,9 +37,9 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
+            <ul class="nav nav-sidebar" ng-controller="mainController">
             <li><a href="#">Overview</a></li>
-            <li><a href="#/search/search.html">Search User Stories</a></li>
+            <li><a href="#" ng-click="toggleView('search')">Search User Stories</a></li>
             <li><a href="#">Analytics</a></li>
             <li><a href="#">Export</a></li>
             </ul>
@@ -50,7 +50,6 @@
             <!-- MAIN VIEW BELOW -->
 
             <div ui-view></div>
-            <div class="col-sm-9 col-sm-offset-0 col-md-10 col-md-offset-0 view"></div>
           </div>
         </div>
       </div>
@@ -70,5 +69,7 @@
     <script type="text/javascript" src="top100visual/top100visual.js"></script>
     <script type="text/javascript" src="app/d3-angular.js"></script>
     <script type="text/javascript" src="app/directives.js"></script>
+    <script type="text/javascript" src="search/search.js"></script>
+
   </body>
 </html>

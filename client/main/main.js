@@ -1,4 +1,4 @@
-angular.module('myApp.main', [] )
+angular.module('myApp.main', ["myApp.search"] )
 
 .controller('mainController', function($scope, $state){
 	$state.transitionTo('main.subviews');
@@ -9,7 +9,12 @@ angular.module('myApp.main', [] )
 });
 =======
 	$scope.search = true;
-	// $scope.topStories = false;
+	$scope.topStories = false; 
+	$scope.views = [$scope.search, $scope.views];
+
+	$scope.toggleView = function( views ){
+		$scope[views] = true;
+	};
 })
 >>>>>>> (bug) took out a bug in ng-controller of search
 
