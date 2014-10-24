@@ -1,27 +1,33 @@
 angular.module('myApp.search', [] )
 	
-	.factory('search', function(){
+	.factory('search', function($http){
 		var searchObject = {};
-		searchObject.url = "https://hacker-news.firebaseio.com/v0/";
+		searchObject.url = "https://hacker-news.firebaseio.com/v0";
 		searchObject.items = [];
 		searchObject.storyIds;
 		searchObject.topStories;
 
+		searchObject.hello = function(){
+			alert(this.url);
+		}
+
 		searchObject.fetchData = function(userName){
 			$http({
 				method: 'GET',
-				url: this.url + "/users/" + userName + ".json",
+				url: searchObject.url + "/user/" + userName + ".json",
 			}).success(function(userProfile, status){
-				this.storyIds = userProfile.submitted;
-				this.storyIds.forEach(function(storyId){
-					$.get(this.url + "/item/" + storyId + ".json", function(story, status){
-						this.items.push(story);
-						if(this.items.length === this.storyIds.length){
-							stories = this.items.filter(function(story){
+				searchObject.storyIds = userProfile.submitted;
+				searchObject.storyIds.forEach(function(storyId){
+					$.get(searchObject.url + "/item/" + storyId + ".json", function(story, status){
+						searchObject.items.push(story);
+						if(searchObject.items.length === searchObject.storyIds.length){
+							var stories = searchObject.items.filter(function(story){
 								return story.score;
 							})
-							this.topStories = stories.slice(0,10);
-							console.log(this.topStories);
+							// var sortedStories = searchObject.sort(stories);
+							var sortedStories = stories.sort(searchObject.sort);
+							searchObject.topStories = sortedStories.slice(0,10);
+							console.log(searchObject.topStories);
 						}
 					})
 				}) 
@@ -30,17 +36,26 @@ angular.module('myApp.search', [] )
 				console.log(error)
 			})
 		}
+		searchObject.sort = function(a,b) {
+		  if (a.score < b.score)
+		     return 1;
+		  if (a.score > b.score)
+		    return -1;
+		  return 0;
+		}
 		return searchObject;
 	})
+	
 
 	.controller('searchCtrl', function($scope, search, $location){
-		$scope.go = function( path ){
-			console.log( path );
-			$location.path( path ); 
-		};
+		// Currently the $location(path) is not working 
+		// $scope.go = function( path ){
+		// 	console.log( path );
+		// 	$location.path( path ); 
+		// };
+		$scope.fact = search;
 		$scope.username;
-		$scope.test = function(){
-			console.log($scope.userName);
-			$scope.userName = '';
+		$scope.searchUserName = function(userName){
+			$scope.fact.fetchData(userName);
 		}
 });
