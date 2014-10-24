@@ -8,5 +8,5 @@
 module.exports = {
   databaseName: "ChocolateDB",
   username: "WillieWonka",
-  password: "Snozberries"  
+  password: "Snozberries"
 };
