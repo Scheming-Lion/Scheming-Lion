@@ -56,7 +56,7 @@ app.get('/importData', function(req, res) {
 
   // change to location and name of the file.
 
-  fs.createReadStream('./scraper/data/items-1154966-1692160.txt', { encoding: 'utf8'})
+  fs.createReadStream('./scraper_data/items-1154966-1692160.txt', { encoding: 'utf8'})
     .pipe(split())
     .on('data', function (item) {
       item = JSON.parse(item);
@@ -73,7 +73,7 @@ app.get('/importData', function(req, res) {
       
       } else if (item.type === 'job') {
       
-        job.push(item);
+        jobs.push(item);
       
       } else if (item.type === 'poll') {
       
