@@ -6,7 +6,7 @@ describe('Unit Tests', function() {
   });
 });
 
-describe('Angular Scraper', function() {
+xdescribe('Angular Scraper', function() {
 
   describe('Main Controller', function() {
     beforeEach(module('scraper'));
@@ -28,16 +28,16 @@ describe('Angular Scraper', function() {
 
 });
 
-describe('Top Stories', function() {
+xdescribe('Top Stories', function() {
   it('should return 10 items', function() {
     //having difficulty figuring out how to do this because it depends on the view
   })
 });
 
-describe('Track Posts', function() {
+xdescribe('Track Posts', function() {
   //TODO: hard because have to integrate HN firebase
 });
 
-describe('TrackUsers', function() {
+xdescribe('TrackUsers', function() {
   //TODO
 });
