@@ -134,3 +134,11 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+.loading {
+  background: url('./spiffygif_46x46.gif');
+  background-repeat: none;
+  width: 47px;
+  height: 47px;
+  margin:0 auto;
+}

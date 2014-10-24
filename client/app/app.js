@@ -1,4 +1,11 @@
-var app = angular.module('myApp', ["ui.router", "myApp.main"]);
+var app = angular.module('myApp', [
+  "ui.router",
+  "myApp.main",
+  "myApp.top100visual",
+  "firebase",
+  "d3",
+  "myApp.directives"
+  ]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -15,19 +22,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
         },
         'topStories': {
           templateUrl: 'topStories/topStories.html'
+        },
+        'top100visual': {
+          controller: 'top100visualController',
+          templateUrl: 'top100visual/top100visual.html'
         }
       }
-    })
+    });
   
   $urlRouterProvider.otherwise("/main");
 });
-
-  // .state('home', {
-  //       url: '/home',
-  //       controller: 'HomeController',
-  //       templateUrl: 'home/home.html'
-  //     })
-
-  //     views : {
-  //       'searchTopStories': {
-  //         templateUrl: "../partials/state2.html"
