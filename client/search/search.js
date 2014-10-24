@@ -3,31 +3,37 @@ angular.module('myApp.search', [] )
 	.factory('search', function($http){
 		var searchObject = {};
 		searchObject.url = "https://hacker-news.firebaseio.com/v0";
-		searchObject.items = [];
 		searchObject.storyIds;
-		searchObject.topStories;
-
-		searchObject.hello = function(){
-			alert(this.url);
-		}
+		searchObject.topStories = {
+			data:[]
+		};
 
 		searchObject.fetchData = function(userName){
+			console.log('Username', userName)
 			$http({
 				method: 'GET',
 				url: searchObject.url + "/user/" + userName + ".json",
 			}).success(function(userProfile, status){
 				searchObject.storyIds = userProfile.submitted;
+				var searchItems = [];
 				searchObject.storyIds.forEach(function(storyId){
-					$.get(searchObject.url + "/item/" + storyId + ".json", function(story, status){
-						searchObject.items.push(story);
-						if(searchObject.items.length === searchObject.storyIds.length){
-							var stories = searchObject.items.filter(function(story){
+					$http({
+						method: 'GET',
+						url: searchObject.url + "/item/" + storyId + ".json",
+						})
+						.success(function(story, status){
+						searchItems.push(story);
+						if(searchItems.length === searchObject.storyIds.length){
+							console.log('getting here a second time');
+							var stories = searchItems.filter(function(story){
 								return story.score;
 							})
-							// var sortedStories = searchObject.sort(stories);
 							var sortedStories = stories.sort(searchObject.sort);
-							searchObject.topStories = sortedStories.slice(0,10);
-							console.log(searchObject.topStories);
+							var topStoriesArray = sortedStories.slice(0,10);
+							searchObject.topStories.data = topStoriesArray;
+							console.log(searchObject.topStories.data);
+
+							return searchObject.topStories.data;
 						}
 					})
 				}) 
@@ -36,7 +42,8 @@ angular.module('myApp.search', [] )
 				console.log(error)
 			})
 		}
-		searchObject.sort = function(a,b) {
+
+		searchObject.sort = function(a, b) {
 		  if (a.score < b.score)
 		     return 1;
 		  if (a.score > b.score)
@@ -53,9 +60,13 @@ angular.module('myApp.search', [] )
 		// 	console.log( path );
 		// 	$location.path( path ); 
 		// };
-		$scope.fact = search;
-		$scope.username;
+
+		$scope.factory = search;
+		// $scope.factory.topStories = search.topStories;
+		$scope.topStories = search.topStories;
 		$scope.searchUserName = function(userName){
-			$scope.fact.fetchData(userName);
-		}
+			search.fetchData(userName);
+		};
+
+		$scope.storiesArray = search.topStories;
 });
