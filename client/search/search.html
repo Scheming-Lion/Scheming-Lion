@@ -1,6 +1,6 @@
-<form class="form-inline" role="form" ng-controller="searchCtrl">
+<form class="form-inline" role="form" ng-controller="searchCtrl" ng-submit='searchUserName(userName)'>
   <input type="text" ng-model="userName" class="userName form-control col-sm-3 col-md-2" placeholder="Enter User Name">
-  <button type="button" class="search btn btn-primary" ng-click='test()'>Search</button>
+  <button type="button" class="search btn btn-primary" ng-click='searchUserName(userName)'>Search</button>
 </form>
 
 
