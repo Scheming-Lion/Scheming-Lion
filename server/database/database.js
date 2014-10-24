@@ -1,7 +1,8 @@
 var Sequelize = require('sequelize');
+var credential = require('./databaseConfig.js')
 
 // AZUREWEBSITE IMPLEMENTATION
-var sequelize = new Sequelize("lionbase", "bc8fa3955e6d18", "83511e40", {
+var sequelize = new Sequelize(credential.databaseName, credential.username, credential.password, {
   host: 'us-cdbr-azure-west-a.cloudapp.net',
   define: {
     underscored: false,
