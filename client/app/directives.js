@@ -6,9 +6,7 @@ angular.module('myApp.directives', [])
 
           var wordCount = scope.wordCount;
 
-          console.log(wordCount.length);
           var amount = Math.ceil(Math.sqrt(wordCount.length));
-          console.log(amount);
 
           var svgContainer = d3.select(".wordVisual").append("svg")
                                                .attr("class", "wordVisual")
@@ -20,7 +18,7 @@ angular.module('myApp.directives', [])
             
             var column = 0;
             var counter = 0;
-            var row = 30;
+            var row = 50;
             var rowCounter = 0;
 
             var wordsVisual = svgContainer.selectAll("text")
@@ -38,7 +36,7 @@ angular.module('myApp.directives', [])
                                })
                                .attr("y", function(d,i) {
                                   if ( (i-(rowCounter*amount)) > amount ) {
-                                    row=30;
+                                    row=50;
                                     rowCounter++;
                                   } else {
                                     row += 40;
