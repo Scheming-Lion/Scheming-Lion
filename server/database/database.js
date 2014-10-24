@@ -1,8 +1,13 @@
 var Sequelize = require('sequelize');
-var credential = require('./databaseConfig.js')
+var credential = require('./databaseConfig.example.js');
+
+
+var databaseName = process.env.DB_NAME || credential.databaseName;
+var username = process.env.DB_USERNAME || credential.username;
+var password = process.env.DB_PASSWORD || credential.password;
 
 // AZUREWEBSITE IMPLEMENTATION
-var sequelize = new Sequelize(credential.databaseName, credential.username, credential.password, {
+var sequelize = new Sequelize(databaseName, username, password, {
   host: 'us-cdbr-azure-west-a.cloudapp.net',
   define: {
     underscored: false,
