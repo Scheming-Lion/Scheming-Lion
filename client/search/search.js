@@ -24,15 +24,14 @@ angular.module('myApp.search', [] )
 						.success(function(story, status){
 						searchItems.push(story);
 						if(searchItems.length === searchObject.storyIds.length){
-							console.log('getting here a second time');
 							var stories = searchItems.filter(function(story){
 								return story.score;
 							})
 							var sortedStories = stories.sort(searchObject.sort);
 							var topStoriesArray = sortedStories.slice(0,10);
 							searchObject.topStories.data = topStoriesArray;
-							console.log(searchObject.topStories.data);
 
+							console.log(searchObject.topStories.data);
 							return searchObject.topStories.data;
 						}
 					})
@@ -66,6 +65,7 @@ angular.module('myApp.search', [] )
 		$scope.topStories = search.topStories;
 		$scope.searchUserName = function(userName){
 			search.fetchData(userName);
+			$scope.userName = '';
 		};
 
 		$scope.storiesArray = search.topStories;
