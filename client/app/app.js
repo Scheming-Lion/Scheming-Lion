@@ -2,7 +2,7 @@ var app = angular.module('myApp', [
   "ui.router",
   "myApp.main",
   "myApp.top100visual",
-  "myApp.search"
+  "myApp.search",
   "firebase",
   "d3",
   "myApp.directives"

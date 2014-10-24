@@ -116,27 +116,6 @@ body {
   margin-top: 0;
 }
 
-
-<<<<<<< HEAD:client/assets/dashboard.css
-/*
- * Placeholder dashboard ideas
- */
-
-.placeholders {
-  margin-bottom: 30px;
-  text-align: center;
-}
-.placeholders h4 {
-  margin-bottom: 0;
-}
-.placeholder {
-  margin-bottom: 20px;
-}
-.placeholder img {
-  display: inline-block;
-  border-radius: 50%;
-}
-
 .loading {
   background: url('./spiffygif_46x46.gif');
   background-repeat: none;
@@ -144,5 +123,3 @@ body {
   height: 47px;
   margin:0 auto;
 }
-=======
->>>>>>> (bug) took out a bug in ng-controller of search:client/dashboard.css
