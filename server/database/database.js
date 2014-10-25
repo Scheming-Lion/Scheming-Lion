@@ -22,7 +22,7 @@ var sequelize = new Sequelize(databaseName, username, password, {
 });
 
 // LOCAL HOST IMPLEMENTATION
-// var sequelize = new Sequelize("lionbase", "root", "zelda", {
+// var sequelize = new Sequelize("database", "root", "password", {
 //   host: 'localhost',
 //   define: {
 //     underscored: false,
@@ -117,7 +117,13 @@ module.exports.create = function(itemName, items) {
       
       var subItems = items.slice(start, end);
 
-      itemName.bulkCreate(subItems);
+      itemName.bulkCreate(subItems)
+        .success(function() {
+          console.log("yay");
+        })
+        .error(function(error) {
+          console.log(error);
+        });
       // when uncommenting the below code, remember to remove the semicolon
       // at the end of line 120
         // .success(function() {
@@ -131,6 +137,48 @@ module.exports.create = function(itemName, items) {
     }
 
   }
+};
+
+module.exports.updateUser = function(user) {
+  console.log("update");
+  // console.log(user);
+  module.exports.User
+    .find({
+      where: {
+        id: user.id
+      }
+    })
+    .success(function(foundUser) {
+      var string = JSON.stringify(user.submitted);
+      console.log(user.submitted);
+      if (string !== undefined) {
+        if (string.length >= 21844) {
+          string = string.slice(0, 21844);
+        }
+      }
+
+      var string2 = "";
+      if (string2 !== undefined) {
+        if (string2.length >= 255) {
+          string2 = string.slice(0, 255);
+        }
+      }
+
+      foundUser.updateAttributes({
+        about: string2,
+        created: user.created,
+        delay: user.delay,
+        karma: user.karma,
+        submitted: string
+      })
+        .success(function() {
+          console.log(foundUser.id + " saved!");
+        });
+    })
+    .error(function(error) {
+      console.log("error on find");
+      console.log(error);
+    });
 };
 
 sequelize.sync();
@@ -155,7 +203,6 @@ sequelize.sync();
 // User.hasMany(Poll, {as: 'Polls'});
 // User.hasMany(PollOption, {as: 'PollOptions'});
 // User.hasMany(Story, {as: 'Stories'});
-
 
 // RESETS THE ENTIRE DATABASE
 // sequelize

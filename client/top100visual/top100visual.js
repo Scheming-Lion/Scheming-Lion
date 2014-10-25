@@ -54,15 +54,21 @@ angular.module('myApp.top100visual', [] )
           // split the title into its words 
           for (var word = 0; word < words.length; word++) {
             // iterate through the words
-            if( !filterForCommonWords(words[word]) ) {
+
+            var punctuationFreeWord = words[word];
+                punctuationFreeWord = punctuationFreeWord.replace(/\b[-.,()&$#!\[\]{}"']+\B|\B[-.,():&$#!\[\]{}"']+\b/g, "");
+
+            if( !filterForCommonWords(punctuationFreeWord) ) {
               // check if word is common. If it isn't add to the total word count object
-              if (totalWordCount[words[word]] === undefined) {
+
+
+              if (totalWordCount[punctuationFreeWord] === undefined) {
                 // if the word isn't in the object yet
-                totalWordCount[words[word]] = 1;
+                totalWordCount[punctuationFreeWord] = 1;
                 // add it as a key and make the value 1
               } else {
                 // if the word is already in the word count object
-                totalWordCount[words[word]]++;
+                totalWordCount[punctuationFreeWord]++;
                 // increase the value by one, indicating there is another instance of the word
               }
             }
@@ -74,21 +80,38 @@ angular.module('myApp.top100visual', [] )
     };
 
     var filterForCommonWords = function(word) {
-      if( word === 'to' ||
-          word === 'To' ||
-          word === 'and' ||
-          word === 'The' ||
-          word === 'the' ||
-          word === 'a' ||
-          word === 'A' ||
-          word === 'HN' ||
-          word === 'an' ||
-          word === 'An' ||
-          word === 'for' ||
-          word === 'of' ) {
-        return true;
-      } else {
-        return false;
+      switch (word) {
+        case 'to':
+        case 'To':
+        case 'and':
+        case 'the':
+        case 'The':
+        case 'is':
+        case 'for':
+        case 'An':
+        case 'an':
+        case 'A':
+        case 'a':
+        case 'HN:':
+        case 'for':
+        case 'is':
+        case 'that':
+        case 'with':
+        case 'in':
+        case 'you':
+        case 'You':
+        case '-':
+        case 'are':
+        case 'Are':
+        case 'That':
+        case 'Is':
+        case 'is':
+        case 'of':
+        case 'on':
+        case 'How':
+          return true;
+        default:
+          return false;
       }
     };
 

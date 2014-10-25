@@ -22,9 +22,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
           templateUrl: 'search/search.html',
           controller: 'searchCtrl'
         },
-        'topStories': {
-          templateUrl: 'topStories/topStories.html'
-        },
         'top100visual': {
           controller: 'top100visualController',
           templateUrl: 'top100visual/top100visual.html'
