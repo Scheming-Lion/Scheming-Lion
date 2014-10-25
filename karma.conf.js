@@ -17,20 +17,17 @@ module.exports = function(config) {
       // angular source
       'node_modules/angular/angular.js',
       'node_modules/angular-route/angular-route.js',
-      'node_modules/angular-ui-router/release/angular-ui-router.min.js',
-      'node_modules/jquery/dist/jquery.min.js',
-      'node_modules/requirejs/require.js',
       'client/lib/angular-mocks/angular-mocks.js',
 
-      // our app code to be tested
-      'client/top100visual/*.js',
-      'client/topStories/*.js',
-      'client/search/*.js',
-      'client/main/*.js',
+      // our app code
+      'scraper/client/*.js',
+      // 'client/*.js',
+      // 'server/*.js',
+      // 'server/database/*.js',
 
       // our spec files
       'node_modules/expect.js/index.js',
-      'testing/unit/*.js'
+      'testing/**/*.js'
     ],
 
 
@@ -51,16 +48,11 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    
-    // tested app code should also be added here
-    // for coverage reporting
     preprocessors: {
-      'client/top100visual/*.js': 'coverage',
-      'client/topStories/*.js': 'coverage',
-      'client/search/*.js': 'coverage',
-      'client/main/*.js': 'coverage',
-      'client/trackPost.js': 'coverage',
-      'client/trackUser.js': 'coverage'
+      'client/*.js': 'coverage',
+      'scraper/client/*.js': 'coverage',
+      'server/*.js': 'coverage',
+      'server/database/*.js': 'coverage'
     },
 
 
