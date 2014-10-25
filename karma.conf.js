@@ -18,21 +18,24 @@ module.exports = function(config) {
       'node_modules/angular/angular.js',
       'node_modules/angular-route/angular-route.js',
       'node_modules/jquery/dist/jquery.min.js',
+      'node_modules/requirejs/require.js',
       'client/lib/angular-mocks/angular-mocks.js',
 
       // our app code to be tested
       'client/top100visual/*.js',
       'client/topStories/*.js',
+      'client/search/*.js',
+      'client/main/*.js',
 
       // our spec files
       'node_modules/expect.js/index.js',
-      'testing/**/*.js'
+      'testing/unit/*.js'
     ],
 
 
     // list of files to exclude
     exclude: [
-        'karma.conf.js'
+        'karma.conf.js',
     ],
 
     coverageReporter: {
@@ -52,7 +55,11 @@ module.exports = function(config) {
     // for coverage reporting
     preprocessors: {
       'client/top100visual/*.js': 'coverage',
-      'client/topStories/*.js': 'coverage'
+      'client/topStories/*.js': 'coverage',
+      'client/search/*.js': 'coverage',
+      'client/main/*.js': 'coverage',
+      'client/trackPost.js': 'coverage',
+      'client/trackUser.js': 'coverage',
     },
 
 
