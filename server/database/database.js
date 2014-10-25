@@ -22,7 +22,7 @@ var sequelize = new Sequelize(databaseName, username, password, {
 });
 
 // LOCAL HOST IMPLEMENTATION
-// var sequelize = new Sequelize("another", "root", "zelda", {
+// var sequelize = new Sequelize("database", "root", "password", {
 //   host: 'localhost',
 //   define: {
 //     underscored: false,
