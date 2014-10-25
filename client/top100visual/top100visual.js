@@ -55,20 +55,20 @@ angular.module('myApp.top100visual', [] )
           for (var word = 0; word < words.length; word++) {
             // iterate through the words
 
-            var str = words[word];
-                str = str.replace(/\b[-.,()&$#!\[\]{}"']+\B|\B[-.,():&$#!\[\]{}"']+\b/g, "");
+            var punctuationFreeWord = words[word];
+                punctuationFreeWord = punctuationFreeWord.replace(/\b[-.,()&$#!\[\]{}"']+\B|\B[-.,():&$#!\[\]{}"']+\b/g, "");
 
-            if( !filterForCommonWords(str) ) {
+            if( !filterForCommonWords(punctuationFreeWord) ) {
               // check if word is common. If it isn't add to the total word count object
 
 
-              if (totalWordCount[str] === undefined) {
+              if (totalWordCount[punctuationFreeWord] === undefined) {
                 // if the word isn't in the object yet
-                totalWordCount[str] = 1;
+                totalWordCount[punctuationFreeWord] = 1;
                 // add it as a key and make the value 1
               } else {
                 // if the word is already in the word count object
-                totalWordCount[str]++;
+                totalWordCount[punctuationFreeWord]++;
                 // increase the value by one, indicating there is another instance of the word
               }
             }
@@ -114,37 +114,6 @@ angular.module('myApp.top100visual', [] )
           return false;
       }
     };
-
-    //   if( word === 'to' ||
-    //       word === 'To' ||
-    //       word === 'and' ||
-    //       word === 'The' ||
-    //       word === 'the' ||
-    //       word === 'a' ||
-    //       word === 'A' ||
-    //       word === 'HN' ||
-    //       word === 'HN:' ||
-    //       word === 'an' ||
-    //       word === 'An' ||
-    //       word === 'for' ||
-    //       word === 'is' ||
-    //       word === 'that' ||
-    //       word === 'with' ||
-    //       word === 'in' ||
-    //       word === 'you' ||
-    //       word === 'You' ||
-    //       word === '-' ||
-    //       word === 'are' ||
-    //       word === 'Are' ||
-    //       word === 'That' ||
-    //       word === 'Is' ||
-    //       word === 'is' ||
-    //       word === 'of' ) {
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // };
 
     top100stories.$loaded()
       .then(function() {
