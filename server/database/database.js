@@ -102,7 +102,11 @@ module.exports.User = sequelize.define('User', {
 
 module.exports.create = function(itemName, items) {
   if (items.length > 1) {
-    console.log("Adding " + items.length + " items to the " + itemName + " table." );
+    if( items[0].type ) {
+      console.log("Adding " + items.length + " items to the " + items[0].type + " table." );
+    } else {
+      console.log("There are " + items.length + " items listed as deleted.");
+    }
 
     for (var start = 0; start < items.length; start+=1000) {
       var end = start + 1000;
@@ -113,15 +117,16 @@ module.exports.create = function(itemName, items) {
       
       var subItems = items.slice(start, end);
 
-      itemName.bulkCreate(subItems);
+      itemName.bulkCreate(subItems)
       // when uncommenting the below code, remember to remove the semicolon
       // at the end of line 111
-        // .success(function() {
-        //   itemName.findAll()
-        //     .success(function(addedItems) {
-        //       console.log( addedItems.length + " items added to the " + itemName + " table!" );
-        //     });
-        // });
+        .success(function() {
+          itemName.findAll()
+            .success(function(addedItems) {
+              console.log('addedItems', addedItems);
+              console.log( addedItems.length + " items added to the " + addedItems.type + " table!" );
+            });
+        });
          
     }
 
