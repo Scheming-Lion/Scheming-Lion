@@ -14,8 +14,8 @@ Use this file as a guide for inserting items into the database.
 3. Change line 59 to the directory and file which stores your Hacker News API data
   -This will likely be in the scraper_data folder of the Scraper repository
 4. Navigate to the database.js file.
-5. Remove the semicolon from line 116.
-5. Uncomment lines 119-124.
+5. Remove the semicolon from line 120.
+5. Uncomment lines 123-129.
 
 ~ Power Settings for Your Computer ~
 1. Plug your computer into a charger.

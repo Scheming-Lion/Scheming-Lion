@@ -117,16 +117,16 @@ module.exports.create = function(itemName, items) {
       
       var subItems = items.slice(start, end);
 
-      itemName.bulkCreate(subItems)
+      itemName.bulkCreate(subItems);
       // when uncommenting the below code, remember to remove the semicolon
-      // at the end of line 111
-        .success(function() {
-          itemName.findAll()
-            .success(function(addedItems) {
-              console.log('addedItems', addedItems);
-              console.log( addedItems.length + " items added to the " + addedItems.type + " table!" );
-            });
-        });
+      // at the end of line 120
+        // .success(function() {
+        //   itemName.findAll()
+        //     .success(function(addedItems) {
+        //       console.log('addedItems', addedItems);
+        //       console.log( addedItems.length + " items added to the " + addedItems.type + " table!" );
+        //     });
+        // });
          
     }
 
