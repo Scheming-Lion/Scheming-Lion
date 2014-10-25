@@ -17,6 +17,7 @@ module.exports = function(config) {
       // angular source
       'node_modules/angular/angular.js',
       'node_modules/angular-route/angular-route.js',
+      'node_modules/angular-ui-router/release/angular-ui-router.min.js',
       'node_modules/jquery/dist/jquery.min.js',
       'node_modules/requirejs/require.js',
       'client/lib/angular-mocks/angular-mocks.js',
