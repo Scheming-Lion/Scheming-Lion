@@ -54,15 +54,21 @@ angular.module('myApp.top100visual', [] )
           // split the title into its words 
           for (var word = 0; word < words.length; word++) {
             // iterate through the words
-            if( !filterForCommonWords(words[word]) ) {
+
+            var str = words[word];
+                str = str.replace(/\b[-.,()&$#!\[\]{}"']+\B|\B[-.,():&$#!\[\]{}"']+\b/g, "");
+
+            if( !filterForCommonWords(str) ) {
               // check if word is common. If it isn't add to the total word count object
-              if (totalWordCount[words[word]] === undefined) {
+
+
+              if (totalWordCount[str] === undefined) {
                 // if the word isn't in the object yet
-                totalWordCount[words[word]] = 1;
+                totalWordCount[str] = 1;
                 // add it as a key and make the value 1
               } else {
                 // if the word is already in the word count object
-                totalWordCount[words[word]]++;
+                totalWordCount[str]++;
                 // increase the value by one, indicating there is another instance of the word
               }
             }
@@ -74,23 +80,71 @@ angular.module('myApp.top100visual', [] )
     };
 
     var filterForCommonWords = function(word) {
-      if( word === 'to' ||
-          word === 'To' ||
-          word === 'and' ||
-          word === 'The' ||
-          word === 'the' ||
-          word === 'a' ||
-          word === 'A' ||
-          word === 'HN' ||
-          word === 'an' ||
-          word === 'An' ||
-          word === 'for' ||
-          word === 'of' ) {
-        return true;
-      } else {
-        return false;
+      switch (word) {
+        case 'to':
+        case 'To':
+        case 'and':
+        case 'the':
+        case 'The':
+        case 'is':
+        case 'for':
+        case 'An':
+        case 'an':
+        case 'A':
+        case 'a':
+        case 'HN:':
+        case 'for':
+        case 'is':
+        case 'that':
+        case 'with':
+        case 'in':
+        case 'you':
+        case 'You':
+        case '-':
+        case 'are':
+        case 'Are':
+        case 'That':
+        case 'Is':
+        case 'is':
+        case 'of':
+        case 'on':
+        case 'How':
+          return true;
+        default:
+          return false;
       }
     };
+
+    //   if( word === 'to' ||
+    //       word === 'To' ||
+    //       word === 'and' ||
+    //       word === 'The' ||
+    //       word === 'the' ||
+    //       word === 'a' ||
+    //       word === 'A' ||
+    //       word === 'HN' ||
+    //       word === 'HN:' ||
+    //       word === 'an' ||
+    //       word === 'An' ||
+    //       word === 'for' ||
+    //       word === 'is' ||
+    //       word === 'that' ||
+    //       word === 'with' ||
+    //       word === 'in' ||
+    //       word === 'you' ||
+    //       word === 'You' ||
+    //       word === '-' ||
+    //       word === 'are' ||
+    //       word === 'Are' ||
+    //       word === 'That' ||
+    //       word === 'Is' ||
+    //       word === 'is' ||
+    //       word === 'of' ) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // };
 
     top100stories.$loaded()
       .then(function() {

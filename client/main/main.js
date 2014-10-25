@@ -6,7 +6,6 @@ angular.module('myApp.main', ["myApp.search"] )
   $scope.current;
 
   $scope.chooseView = function(view) {
-    console.log("here");
     $scope.current = view;
   };
 
