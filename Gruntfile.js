@@ -61,10 +61,29 @@ module.exports = function(grunt) {
   });
 
   ////////////////////////////////////////////////////
+  // Forcing so karma will run/report even if a test fails
+  ///////////////////////////////////////////////////
+
+  grunt.registerTask('forceOn', 'turns the --force option ON',
+    function() {
+      if ( !grunt.option( 'force' ) ) {
+        grunt.config.set('forceStatus', true);
+        grunt.option( 'force', true );
+      }
+    });
+
+  grunt.registerTask('forceOff', 'turns the --force option Off',
+    function() {
+      if ( grunt.config.get('forceStatus') ) {
+        grunt.option( 'force', false );
+      }
+    });
+
+  ////////////////////////////////////////////////////
   // Main grunt tasks
   ////////////////////////////////////////////////////
 
-  grunt.registerTask('test', ['karma', "shell"]);
+  grunt.registerTask('test', ['forceOn','karma', 'forceOff', "shell"]);
 
   grunt.registerTask('build', []);
 
