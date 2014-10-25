@@ -6,7 +6,7 @@
 // access to the credentials locally.
 
 module.exports = {
-  databaseName: "ChocolateDB",
-  username: "WillieWonka",
-  password: "Snozberries"
+  databaseName: "lionbase",
+  username: "bc8fa3955e6d18",
+  password: "71b12f9d5436d6f"
 };
