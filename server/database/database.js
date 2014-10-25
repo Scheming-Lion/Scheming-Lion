@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-var credential = require('./databaseConfig.example.js');
+var credential = require('./databaseConfig.js');
 
 
 var databaseName = process.env.DB_NAME || credential.databaseName;
@@ -102,8 +102,11 @@ module.exports.User = sequelize.define('User', {
 
 module.exports.create = function(itemName, items) {
   if (items.length > 1) {
-    console.log("creating");
-    console.log("length: " + items.length);
+    if( items[0].type ) {
+      console.log("Adding " + items.length + " items to the " + items[0].type + " table." );
+    } else {
+      console.log("There are " + items.length + " items listed as deleted.");
+    }
 
     for (var start = 0; start < items.length; start+=1000) {
       var end = start + 1000;
@@ -116,11 +119,12 @@ module.exports.create = function(itemName, items) {
 
       itemName.bulkCreate(subItems);
       // when uncommenting the below code, remember to remove the semicolon
-      // at the end of line 111
+      // at the end of line 120
         // .success(function() {
         //   itemName.findAll()
         //     .success(function(addedItems) {
-        //       console.log( "items created: " + addedItems.length );
+        //       console.log('addedItems', addedItems);
+        //       console.log( addedItems.length + " items added to the " + addedItems.type + " table!" );
         //     });
         // });
          
