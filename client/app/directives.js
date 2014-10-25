@@ -46,13 +46,13 @@ angular.module('myApp.directives', [])
                                .attr("font-size", function(d) {
                                   return d.count*10 +"px";
                                })
-                               .attr("fill", "white")
+                               .attr("fill", "teal")
                                .text(function(d) {
                                   return d.word;
                                 })
                                .transition()
                                 .duration( 500 )
-                                .attr("fill", "black");
+                                .attr("fill", "white");
 
               wordsVisual.exit().remove();
           };
