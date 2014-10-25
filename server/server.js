@@ -3,6 +3,9 @@ var Promise = require("bluebird");
 var fs = require('fs');
 var split = require('split');
 var db = require('./database/database.js');
+var https = require('https');
+var bodyParser = require('body-parser');
+var StringDecoder = require('string_decoder').StringDecoder;
 
 var app = express();
 
@@ -18,6 +21,8 @@ app.set('views', __dirname + '/client');
 
 // tells the application where to go to find static files.
 app.use(express.static(__dirname + './../client'));
+
+app.use(bodyParser());
 
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -43,7 +48,50 @@ app.get('/', function(req, res) {
 // Only used to import data into the mysql database. //
 ///////////////////////////////////////////////////////
 
-/*
+/*   Inserting user information into the users table
+
+app.get('/populateUsers', function(request, response) {
+
+  var decoder = new StringDecoder('utf8');
+
+  var users = [];
+
+
+  fs.createReadStream('./scraper/data/userss.txt', { encoding: 'utf8'})
+    .pipe(split())
+    .on('data', function (user) {
+      var usernameURL = 'https://hacker-news.firebaseio.com/v0/user/' + user + '.json';
+
+      https.get( usernameURL , function(res) {
+
+        var userInfo = '';
+
+        res.on('data', function(chunk) {
+          userInfo += decoder.write(chunk);
+        });
+
+        res.on('end', function() {
+          var userDetails =  JSON.parse(userInfo);
+          if (userDetails !== undefined) {
+            console.log(userDetails.id);
+            db.updateUser(userDetails);
+          }
+        });
+
+      });
+
+    })
+    .on('error', function(error) {
+      console.log(error);
+    })
+    .on('end', function() {
+      console.log('done');
+    });
+});
+
+*/
+
+/* Import the hacker news api items into the database.
 
 app.get('/importData', function(req, res) {
   var stories = [];
