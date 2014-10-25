@@ -30,6 +30,20 @@ angular.module('myApp.top100visual', [] )
           });
     };
 
+    var giveD3Words = function(wordsObject) {
+      var wordsForD3 = [];
+
+      for (var wordCount in wordsObject) {
+        var tempObject = {};
+
+        tempObject.count = wordsObject[wordCount];
+        tempObject.word = wordCount;
+        
+        wordsForD3.push(tempObject);
+      }
+      return wordsForD3;
+    };
+
     var countWords = function(titles) {
       var totalWordCount = {};
       for (var title = 0; title < titles.length; title++) {
@@ -44,19 +58,11 @@ angular.module('myApp.top100visual', [] )
           }
         }
       }
-
-      var wordsForD3 = [];
-
-      for (var wordCount in totalWordCount) {
-        var tempObject = {};
-
-        tempObject.count = totalWordCount[wordCount];
-        tempObject.word = wordCount;
-        
-        wordsForD3.push(tempObject);
-      }
-      return wordsForD3;
+      
+      return giveD3Words(totalWordCount);
     };
+
+    
 
     top100stories.$loaded()
       .then(function() {
