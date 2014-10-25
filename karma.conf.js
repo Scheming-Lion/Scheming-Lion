@@ -19,11 +19,8 @@ module.exports = function(config) {
       'node_modules/angular-route/angular-route.js',
       'client/lib/angular-mocks/angular-mocks.js',
 
-      // our app code
-      'scraper/client/*.js',
-      // 'client/*.js',
-      // 'server/*.js',
-      // 'server/database/*.js',
+      // our app code to be tested
+      'client/top100visual/*.js',
 
       // our spec files
       'node_modules/expect.js/index.js',
@@ -48,11 +45,11 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+    
+    // tested app code should also be added here
+    // for coverage reporting
     preprocessors: {
-      'client/*.js': 'coverage',
-      'scraper/client/*.js': 'coverage',
-      'server/*.js': 'coverage',
-      'server/database/*.js': 'coverage'
+      'client/top100visual/*.js': 'coverage'
     },
 
 
