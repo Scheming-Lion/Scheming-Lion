@@ -35,7 +35,7 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-        'karma.conf.js',
+        'karma.conf.js'
     ],
 
     coverageReporter: {
@@ -59,7 +59,7 @@ module.exports = function(config) {
       'client/search/*.js': 'coverage',
       'client/main/*.js': 'coverage',
       'client/trackPost.js': 'coverage',
-      'client/trackUser.js': 'coverage',
+      'client/trackUser.js': 'coverage'
     },
 
 

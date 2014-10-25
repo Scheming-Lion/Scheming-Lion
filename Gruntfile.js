@@ -11,7 +11,7 @@ module.exports = function(grunt) {
 
     karma: {
       all: {
-        configFile: 'karma.conf.js',
+        configFile: 'karma.conf.js'
       }
     },
 
@@ -61,7 +61,7 @@ module.exports = function(grunt) {
   });
 
   ////////////////////////////////////////////////////
-  // Forcing so karma will run even if failed tests
+  // Forcing so karma will run/report even if a test fails
   ///////////////////////////////////////////////////
 
   grunt.registerTask('forceOn', 'turns the --force option ON',
