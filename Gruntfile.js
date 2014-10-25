@@ -11,7 +11,7 @@ module.exports = function(grunt) {
 
     karma: {
       all: {
-        configFile: 'karma.conf.js'
+        configFile: 'karma.conf.js',
       }
     },
 
@@ -61,10 +61,29 @@ module.exports = function(grunt) {
   });
 
   ////////////////////////////////////////////////////
+  // Forcing so karma will run even if failed tests
+  ///////////////////////////////////////////////////
+
+  grunt.registerTask('forceOn', 'turns the --force option ON',
+    function() {
+      if ( !grunt.option( 'force' ) ) {
+        grunt.config.set('forceStatus', true);
+        grunt.option( 'force', true );
+      }
+    });
+
+  grunt.registerTask('forceOff', 'turns the --force option Off',
+    function() {
+      if ( grunt.config.get('forceStatus') ) {
+        grunt.option( 'force', false );
+      }
+    });
+
+  ////////////////////////////////////////////////////
   // Main grunt tasks
   ////////////////////////////////////////////////////
 
-  grunt.registerTask('test', ['karma', "shell"]);
+  grunt.registerTask('test', ['forceOn','karma', 'forceOff', "shell"]);
 
   grunt.registerTask('build', []);
 
