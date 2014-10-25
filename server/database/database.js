@@ -102,8 +102,7 @@ module.exports.User = sequelize.define('User', {
 
 module.exports.create = function(itemName, items) {
   if (items.length > 1) {
-    console.log("creating");
-    console.log("length: " + items.length);
+    console.log("Adding " + items.length + " items to the " + itemName + " table." );
 
     for (var start = 0; start < items.length; start+=1000) {
       var end = start + 1000;
@@ -120,7 +119,7 @@ module.exports.create = function(itemName, items) {
         // .success(function() {
         //   itemName.findAll()
         //     .success(function(addedItems) {
-        //       console.log( "items created: " + addedItems.length );
+        //       console.log( addedItems.length + " items added to the " + itemName + " table!" );
         //     });
         // });
          

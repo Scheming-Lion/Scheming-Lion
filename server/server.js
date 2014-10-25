@@ -39,11 +39,11 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
-// Only used to import data into the mysql database.
+///////////////////////////////////////////////////////
+// Only used to import data into the mysql database. //
+///////////////////////////////////////////////////////
 
-/******************************************
- ******************************************
-
+/*
 
 app.get('/importData', function(req, res) {
   var stories = [];
@@ -106,7 +106,7 @@ app.get('/importData', function(req, res) {
       console.log(error);
     })
     .on('end', function() {
-      console.log('done');
+      console.log('Done sorting items by type.');
       db.create(db.Story, stories);
       db.create(db.Comment, comments);
       db.create(db.Job, jobs);
@@ -117,7 +117,6 @@ app.get('/importData', function(req, res) {
 
 });
 
- ******************************************
- ******************************************/
+*/
 
 module.exports = app;
