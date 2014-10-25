@@ -17,6 +17,19 @@ Use this file as a guide for inserting items into the database.
 5. Remove the semicolon from line 116.
 5. Uncomment lines 119-124.
 
+~ Power Settings for Your Computer ~
+1. Plug your computer into a charger.
+2. Click the  in the upper left bar on your home screen.
+3. Select system preferences.
+4. Select energy saver.
+5. Check:
+  * Prevent computer from sleeping automatically when the display is off
+  * Wake for Wi-Fi network access
+  * Kindly close pop-ups that warn you you're going to waste power
+6. Uncheck
+  * Put hard disks to sleep when possible
+  * Enable Power Nap while plugged into a power adapter
+
 ~ Running the Process ~
 1. In the terminal, run app.js from the main Scheming-Lion directory: node --max-old-space-size=8192 app.js
 
