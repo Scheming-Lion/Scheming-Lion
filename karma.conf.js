@@ -17,10 +17,12 @@ module.exports = function(config) {
       // angular source
       'node_modules/angular/angular.js',
       'node_modules/angular-route/angular-route.js',
+      'node_modules/jquery/dist/jquery.min.js',
       'client/lib/angular-mocks/angular-mocks.js',
 
       // our app code to be tested
       'client/top100visual/*.js',
+      'client/topStories/*.js',
 
       // our spec files
       'node_modules/expect.js/index.js',
@@ -49,7 +51,8 @@ module.exports = function(config) {
     // tested app code should also be added here
     // for coverage reporting
     preprocessors: {
-      'client/top100visual/*.js': 'coverage'
+      'client/top100visual/*.js': 'coverage',
+      'client/topStories/*.js': 'coverage'
     },
 
 
