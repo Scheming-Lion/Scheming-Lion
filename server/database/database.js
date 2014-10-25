@@ -203,3 +203,14 @@ sequelize.sync();
 // User.hasMany(Poll, {as: 'Polls'});
 // User.hasMany(PollOption, {as: 'PollOptions'});
 // User.hasMany(Story, {as: 'Stories'});
+
+// RESETS THE ENTIRE DATABASE
+// sequelize
+//   .sync({ force: true })
+//   .complete(function(err) {
+//     if (!!err) {
+//       console.log('An error occured:', err);
+//     } else {
+//       console.log('Success!');
+//     }
+//   });
