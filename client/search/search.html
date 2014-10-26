@@ -1,9 +1,11 @@
-<body ng-controller="searchCtrl">
+	<h1 class="page-header">Top Stories</h1>
+	<p>
+		If you search for a specific Hacker News username, the results will reveal their top stories.
+	</p>
 	<form class="form-inline" role="form" ng-submit='searchUserName(userName)'>
 	  <input type="text" ng-model="userName" class="userName form-control col-sm-3 col-md-2" placeholder="Enter User Name">
-	  <button type="button" class="search btn btn-primary" ng-click='searchUserName(userName)'>Search</button>
+	  <button type="button" class="search btn btn-lion" ng-click='searchUserName(userName)'>Search</button>
 	</form><br>
-<!-- 	<h2>Top Stories By User: {{ $scope.userName }}</h2> -->
 	<ol> 
 
 	<li ng-repeat="story in storiesArray.data">
@@ -14,21 +16,3 @@
 		<hr/>
 	</li>
 	</ol>
-</body>
-
-
-
- <!-- <body ng-controller="searchCtrl">
-	<form ng-submit='searchUserName(userName)'>
-	  <input type="text" ng-model="userName"/>
-	  <button>Search</button>
-	</form>
-<h2>Top Stories By User: {{ $scope.userName }}</h2> 
-	<ol> 
-	<li ng-repeat="story in storiesArray">
-		{{ story }}
-	</li>
-	</ol>
-</body>
-
- -->

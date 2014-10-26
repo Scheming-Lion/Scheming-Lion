@@ -4,11 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Scheming Lion</title>
+    <title>Hacker News Dashboard</title>
     <link rel="shortcut icon" type="image/png" href="assets/favicon.ico">
     <!-- Bootstrap -->
     <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/theme.css" rel="stylesheet">
     <link href="assets/dashboard.css" rel="stylesheet">
 
   </head>
@@ -17,12 +16,12 @@
         <div class="container-fluid">
           <div class="row col-sm-12 col-md-12" >
             <div class="navbar-header">
-              <a class="navbar-brand" href="#"><span id="Brand">Scheming Lion</span></a>
+              <a class="navbar-brand" href="#"><span id="Brand">Hacker News Dashboard</span></a>
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right">
-                <li class='subNav'><a href="https://github.com/Scheming-Lion/Scheming-Lion">About</a></li>
-                <li class='subNav'><a href="#">Help</a></li>
+                <li class='subNav'><a class='navLink' href="https://github.com/Scheming-Lion/Scheming-Lion">About</a></li>
+                <li class='subNav'><a class='navLink' href="#">Help</a></li>
               </ul>
               <form class="navbar-form navbar-right">
                 <input type="text" class="form-control col-sm-3 col-md-2" placeholder="Search...">
@@ -38,12 +37,11 @@
         <div class="row" ng-controller="mainController">
           <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-            <li><a ng-click="chooseView('top100visual')" href="#">Top 100 Title Word Frequency </a></li>
             <li><a ng-click="chooseView('search')" href="#">Search User Stories</a></li>
+            <li><a ng-click="chooseView('top100visual')" href="#">Current Trending Words</a></li>
             </ul>
           </div>
           <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Hacker News DashBoard</h1>
 
             <!-- MAIN VIEW BELOW -->
 
