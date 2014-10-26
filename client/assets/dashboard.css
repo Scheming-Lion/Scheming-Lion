@@ -41,10 +41,6 @@ body {
 /*
  * Global add-ons
  */
-.error{
-  color: red;
-  size: 2.5em;
-}
 
 .sub-header {
   padding-bottom: 10px;
@@ -121,9 +117,13 @@ body {
 }
 
 .loading {
-  background: url('./spiffygif_46x46.gif');
+  background: url('./spiffygif_52x52.gif');
   background-repeat: none;
   width: 47px;
   height: 47px;
   margin:0 auto;
+}
+.error{
+  color: red;
+  size: 2.5em;
 }
