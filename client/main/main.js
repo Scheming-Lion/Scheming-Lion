@@ -11,7 +11,7 @@ angular.module('myApp.main', [] )
 
   $scope.primary = function(view) {
     if ($scope.current === undefined) {
-      $scope.current = 'search';
+      $scope.current = 'home';
     }
     return $scope.current === view;
   };

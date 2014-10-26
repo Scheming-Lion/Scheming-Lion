@@ -6,7 +6,8 @@ var app = angular.module('myApp', [
   "firebase",
   "d3",
   "myApp.directives",
-  "myApp.trackUser"
+  "myApp.trackUser",
+  "myApp.home"
   ]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
@@ -30,6 +31,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
         'trackUser': {
           templateUrl: 'trackUser/trackUser.html',
           controller: 'trackUserController'
+        },
+        'home': {
+          templateUrl: 'home/home.html',
+          controller: 'homeController'
         }
       }
     });
