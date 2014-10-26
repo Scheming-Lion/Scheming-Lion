@@ -5,7 +5,8 @@ var app = angular.module('myApp', [
   "myApp.search",
   "firebase",
   "d3",
-  "myApp.directives"
+  "myApp.directives",
+  "myApp.trackUser"
   ]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
@@ -25,6 +26,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
         'top100visual': {
           controller: 'top100visualController',
           templateUrl: 'top100visual/top100visual.html'
+        },
+        'trackUser': {
+          templateUrl: 'trackUser/trackUser.html',
+          controller: 'trackUserController'
         }
       }
     });
