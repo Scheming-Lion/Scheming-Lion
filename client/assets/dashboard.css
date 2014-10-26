@@ -214,3 +214,16 @@ body {
 .ribbon:hover{
   background-color: #FF6600;
 }
+.footer{
+ /* background: #FA9A50*/;
+  background: white;
+  color: black;
+  height: 30px;
+  opacity: .7;
+  padding-top: 15px !important;
+}
+#footerText{
+  width: 400px;
+  margin-left: 36%;
+  color: #53358F;
+}
