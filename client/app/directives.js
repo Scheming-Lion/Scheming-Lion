@@ -11,7 +11,7 @@ angular.module('myApp.directives', [])
           var svgContainer = d3.select(".wordVisual").append("svg")
                                                .attr("class", "wordVisual")
                                                .attr("width", 1000)
-                                               .attr("height", 2000);
+                                               .attr("height", 1000);
 
 
           var update = function(data) {
@@ -46,13 +46,13 @@ angular.module('myApp.directives', [])
                                .attr("font-size", function(d) {
                                   return d.count*10 +"px";
                                })
-                               .attr("fill", "teal")
+                               .attr("fill", "white")
                                .text(function(d) {
                                   return d.word;
                                 })
                                .transition()
                                 .duration( 500 )
-                                .attr("fill", "white");
+                                .attr("fill", "black");
 
               wordsVisual.exit().remove();
           };
