@@ -1,7 +1,10 @@
-<body ng-controller="searchCtrl">
+	<h1 class="page-header">Top Stories</h1>
+	<p>
+		If you search for a specific Hacker News username, the results will reveal their top stories.
+	</p>
 	<form class="form-inline" role="form" ng-submit='searchUserName(userName)'>
 	  <input type="text" ng-model="userName" class="userName form-control col-sm-3 col-md-2" placeholder="Enter User Name">
-	  <button type="submit" class="search btn btn-primary">Search</button>
+	  <button type="button" class="search btn btn-lion" ng-click='searchUserName(userName)'>Search</button>
 	</form><br>
 	<div class="loading" ng-show="loading"></div>
 	<div class="error" ng-show="error">Sorry the username you entered is not a valid Hacker News user</div>
@@ -15,4 +18,3 @@
 		<hr/>
 	</li>
 	</ol>
-</body>
