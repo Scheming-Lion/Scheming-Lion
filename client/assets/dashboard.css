@@ -118,12 +118,13 @@ a {
   font-size: 18px;
 }
 
-body {
-  background-color: #2b3e50;
+a:hover {
+  text-decoration: none;
+  font-color: #ff6600;
 }
 
-li:hover {
-  color: #2b3e50;
+body {
+  background-color: #2b3e50;
 }
 
 .btn-lion {
