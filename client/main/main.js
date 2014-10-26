@@ -17,4 +17,5 @@ angular.module('myApp.main', ["myApp.search"] )
   };
 
   $scope.primary('search');
+
 });
