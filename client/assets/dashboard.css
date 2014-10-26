@@ -8,7 +8,7 @@ body {
   margin-top: 0px;
 }
 .sidebar{
-  margin-top: -25px;
+  margin-top: -15px;
   padding-top: 0px;
 }
 #Brand{
@@ -155,11 +155,11 @@ body {
     padding-left: 40px;
   }
 }
-.main .page-header {
+.main .page-header{
   margin-top: 0;
 }
 
-.loading {
+.loading{
   background: url('./spiffygif_52x52.gif');
   background-repeat: none;
   width: 52px;
@@ -168,5 +168,62 @@ body {
 }
 .error{
   color: red;
-  size: 2.5em;
+  font-size: 1.5em;
+}
+
+.welcome{
+  font-size: 1.5em;
+
+}
+
+.welcomeList{
+  list-style-type: none;
+}
+
+.ribbon {
+  background-color: black;
+  overflow: hidden;
+  white-space: nowrap;
+  position: absolute;
+  right: -50px;
+  top: 40px;
+  /* 45 deg ccw rotation */
+  -webkit-transform: rotate(45deg);
+     -moz-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+       -o-transform: rotate(45deg);
+          transform: rotate(45deg);
+  /* shadow */
+  -webkit-box-shadow: 0 0 10px #888;
+     -moz-box-shadow: 0 0 10px #888;
+          box-shadow: 0 0 10px #888;
+}
+.ribbon a {
+  border: 3px solid white;
+  font-size: 1.5em;
+  color: white;
+  display: block;
+  font: bold 81.25% 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin: 1px 0;
+  padding: 13px 50px;
+  text-align: center;
+  text-decoration: none;
+  /* shadow */
+  text-shadow: 0 0 5px #444;
+}
+.ribbon:hover{
+  background-color: #FF6600;
+}
+.footer{
+ /* background: #FA9A50*/;
+  background: white;
+  color: black;
+  height: 30px;
+  opacity: .7;
+  padding-top: 15px !important;
+}
+#footerText{
+  width: 400px;
+  margin-left: 36%;
+  color: #53358F;
 }

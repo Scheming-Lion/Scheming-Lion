@@ -21,7 +21,7 @@
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right">
                 <li class='subNav'><a class='navLink' href="#">Login</a></li>
-                <li class='subNav'><a class='navLink' href="https://github.com/Scheming-Lion/Scheming-Lion">About</a></li>
+                <li class='subNav'><a class='navLink' href="https://github.com/Scheming-Lion/Scheming-Lion"><strong>Fork It!<strong></a></li>
               </ul>
             </div>
           </div>
@@ -34,8 +34,10 @@
         <div class="row" ng-controller="mainController">
           <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
+              <li><a ng-click="chooseView('home')" href="#">Home</a></li>
             <li><a ng-click="chooseView('search')" href="#">Search User Stories</a></li>
             <li><a ng-click="chooseView('top100visual')" href="#">Current Trending Words</a></li>
+            <li><a ng-click="chooseView('trackUser')" href="#">Track User</a></li>
             </ul>
           </div>
           <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -46,6 +48,7 @@
           </div>
         </div>
       </div>
+      
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -63,6 +66,7 @@
     <script type="text/javascript" src="app/d3-angular.js"></script>
     <script type="text/javascript" src="app/directives.js"></script>
     <script type="text/javascript" src="search/search.js"></script>
-
+    <script type="text/javascript" src="trackUser/trackUser.js"></script>
+    <script type="text/javascript" src="home/home.js"></script>
   </body>
 </html>
