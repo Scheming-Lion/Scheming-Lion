@@ -1,7 +1,7 @@
 angular.module('myApp.main', ["myApp.search"] )
 
-.controller('mainController', function($scope, $state){
-	$state.transitionTo('main.subviews');
+.controller('mainController', ['$scope', '$state', function($scope, $state) {
+	// $state.transitionTo('main.subviews');
 
   $scope.current;
 
@@ -19,3 +19,4 @@ angular.module('myApp.main', ["myApp.search"] )
   $scope.primary('search');
 
 });
+
