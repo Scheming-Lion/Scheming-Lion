@@ -41,6 +41,10 @@ body {
 /*
  * Global add-ons
  */
+.error{
+  color: red;
+  size: 2.5em;
+}
 
 .sub-header {
   padding-bottom: 10px;

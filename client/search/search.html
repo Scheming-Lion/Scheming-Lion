@@ -4,9 +4,10 @@
 	  <button type="submit" class="search btn btn-primary">Search</button>
 	</form><br>
 	<div class="loading" ng-show="loading"></div>
+	<div class="error" ng-show="error">Sorry the username you entered is not a valid Hacker News user</div>
 	<ol> 
 
-	<li ng-repeat="story in storiesArray.data">
+	<li ng-repeat="story in storiesArray.data" ng-show='good'>
 		<div>Story Title: "{{ story.title }}"</div>
 		<div>Story Author: {{ story.by }}</div>
 		<div>Story Score: {{ story.score }}</div>

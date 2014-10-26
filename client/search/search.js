@@ -14,6 +14,10 @@ angular.module('myApp.search', [] )
 					method: 'GET',
 					url: searchObject.url + "/user/" + userName + ".json",
 				}).success(function(userProfile, status){
+					if(userProfile === null){
+						console.log('sorry not a valid user');
+						reject();
+					}
 					searchObject.storyIds = userProfile.submitted;
 					var searchItems = [];
 					searchObject.storyIds.forEach(function(storyId){
@@ -38,7 +42,7 @@ angular.module('myApp.search', [] )
 					}) 
 				})
 				.error(function(error){
-					console.log(error);
+					console.log('this is the error', error);
 					reject(error);
 				});
 			});
@@ -58,16 +62,25 @@ angular.module('myApp.search', [] )
 	.controller('searchCtrl', function($scope, search){
 		$scope.factory = search;
 		$scope.loading = false; 
+		$scope.good = false;
 		$scope.topStories = search.topStories;
 		$scope.searchUserName = function(userName){
+			$scope.error = false;
 			$scope.loading = true; 
 			search.fetchData(userName).then(function(){
+				$scope.good = true;
 				$scope.$apply(function(){
 					$scope.loading = false;
 					$scope.userName = '';
 				});
 			}).catch(function(error){
-				console.log(error);
+					console.log('error', error);
+					$scope.$apply(function(){
+					$scope.good = false;
+					$scope.loading = false;
+					$scope.userName = '';
+					$scope.error = true; 
+				})
 			})
 		};
 
