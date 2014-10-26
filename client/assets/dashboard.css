@@ -106,11 +106,11 @@ body {
 }
 
 #Brand {
-  color: #000;
+  color: #2b3e50;
 }
 
 .navbar-inverse .navbar-nav>li>a {
-  color: #000;
+  color: #2b3e50;
 }
 
 a {
@@ -118,9 +118,12 @@ a {
   font-size: 18px;
 }
 
-a:hover {
-  color: #ff6600;
-  font-size: 18px;
+body {
+  background-color: #2b3e50;
+}
+
+li:hover {
+  color: #2b3e50;
 }
 
 .btn-lion {
@@ -133,6 +136,9 @@ a:hover {
   margin-top: 50px;
   padding: 20px;
   position: relative;
+  background-color: #2b3e50;
+  height: 100%;
+  color: #fff;
 }
 @media (min-width: 768px) {
   .main {
@@ -145,10 +151,10 @@ a:hover {
 }
 
 .loading {
-  background: url('./spiffygif_46x46.gif');
+  background: url('./spiffygif_52x52.gif');
   background-repeat: none;
-  width: 47px;
-  height: 47px;
+  width: 52px;
+  height: 52px;
   margin:0 auto;
 }
 .error{
