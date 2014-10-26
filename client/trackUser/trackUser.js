@@ -1,7 +1,9 @@
 angular.module('myApp.trackUser', [] )
 
-	.controller('trackUserController', function(){
-		
+	.controller('trackUserController', function($scope){
+		$scope.alert = function(xr){
+			alert(xr);
+		}
 		// //Firebase has a module that will handle data updating through its event handling system
 		// var Firebase = require('firebase');
 

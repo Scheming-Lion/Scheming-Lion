@@ -9,12 +9,11 @@
 	<div class="loading" ng-show="loading"></div>
 	<div class="error" ng-show="error">Sorry the username you entered is not a valid Hacker News user</div>
 	<ol> 
-
-	<li ng-repeat="story in storiesArray.data" ng-show='good'>
-		<div>Story Title: "{{ story.title }}"</div>
-		<div>Story Author: {{ story.by }}</div>
-		<div>Story Score: {{ story.score }}</div>
-		<a href="{{ story.url }}">Go to this Story</a>
-		<hr/>
-	</li>
+		<li ng-repeat="story in storiesArray.data" ng-show='good'>
+			<div>Story Title: "{{ story.title }}"</div>
+			<div>Story Author: {{ story.by }}</div>
+			<div>Story Score: {{ story.score }}</div>
+			<a href="{{ story.url }}">Go to this Story</a>
+			<hr/>
+		</li>
 	</ol>
