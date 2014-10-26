@@ -109,6 +109,10 @@ body {
   color: #2b3e50;
 }
 
+#Brand:hover {
+  color: #fff;
+}
+
 .navbar-inverse .navbar-nav>li>a {
   color: #2b3e50;
 }
@@ -120,7 +124,7 @@ a {
 
 a:hover {
   text-decoration: none;
-  font-color: #ff6600;
+  color: #000;
 }
 
 body {
@@ -131,6 +135,10 @@ body {
   color: #fff;
   background-color: #ff6600;
   border-color: #ff6600;
+}
+
+.btn-lion:hover {
+  color: #fff;
 }
 
 .main {
