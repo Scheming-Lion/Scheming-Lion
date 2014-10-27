@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-var credential = require('./databaseConfig.js');
+var credential = require('./databaseConfig.example.js');
 
 
 var databaseName = process.env.DB_NAME || credential.databaseName;
