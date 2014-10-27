@@ -10,7 +10,7 @@ angular.module('myApp.trackUser', [] )
 			var fullUrl = url.concat(user);
 			var hackerNewsRef = new Firebase(fullUrl);
 			hackerNewsRef.on('value', function (snapshot) {
-				console.log(snapshot);
+				console.log('updated' snapshot);
 				$scope.userToTrack= snapshot.val().id;
 				$scope.userSubmitted = snapshot.val().submitted;
 				$scope.userKarma = snapshot.val().karma;
