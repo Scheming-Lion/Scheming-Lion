@@ -5,7 +5,7 @@ module.exports = function(grunt) {
 
     nodemon: {
       dev: {
-        script: 'server/server.js'
+        script: 'app.js'
       }
     },
 
@@ -28,13 +28,6 @@ module.exports = function(grunt) {
         files: [
           'server/*.js',
           'server/**/*.js',
-          //------- need to be removed? ------//
-          'scraper/*.js',
-          'scraper/*.html',
-          'scraper/client/*.js',
-          'scraper/client/*.html',
-          'scraper/client/*.html',
-          //---------------------------------//
           'client/*.html',
         ],
         tasks: ['karma']
@@ -83,15 +76,18 @@ module.exports = function(grunt) {
   // Main grunt tasks
   ////////////////////////////////////////////////////
 
-  grunt.registerTask('test', ['forceOn','karma', 'forceOff', "shell"]);
+  grunt.registerTask( 'test', ['forceOn','karma', 'forceOff', "shell"] );
 
-  grunt.registerTask('build', []);
+  grunt.registerTask('build', [] );
 
   grunt.registerTask('deploy', function(n) {
-    if(grunt.option('prod')) {
+    if( grunt.option('prod') ) {
       // add your production server task here
+      grunt.registerTask(['build']);
     } else {
       // add your dev server task here
+      grunt.task.run(['build']);
+      grunt.task.run(['server-dev']);
     }
   });
 };
