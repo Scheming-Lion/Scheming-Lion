@@ -125,7 +125,7 @@ module.exports.create = function(itemName, items) {
           console.log(error);
         });
       // when uncommenting the below code, remember to remove the semicolon
-      // at the end of line 120
+      // at the end of line 126
         // .success(function() {
         //   itemName.findAll()
         //     .success(function(addedItems) {

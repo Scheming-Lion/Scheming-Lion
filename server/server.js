@@ -57,7 +57,7 @@ app.get('/populateUsers', function(request, response) {
   var users = [];
 
 
-  fs.createReadStream('./scraper/data/userss.txt', { encoding: 'utf8'})
+  fs.createReadStream('./scraper/data/users.txt', { encoding: 'utf8'})
     .pipe(split())
     .on('data', function (user) {
       var usernameURL = 'https://hacker-news.firebaseio.com/v0/user/' + user + '.json';
