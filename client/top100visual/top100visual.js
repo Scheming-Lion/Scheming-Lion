@@ -1,5 +1,5 @@
 angular.module('myApp.top100visual', [] )
-  .controller('top100visualController', function($scope, $http, $firebase, $q, myName){
+  .controller('top100visualController', function($scope, $http, $firebase, $q, wordCloud){
     $scope.dood = "dooood";
 
     var hackerNewsReference = new Firebase("https://hacker-news.firebaseio.com/v0/topstories");
@@ -25,7 +25,7 @@ angular.module('myApp.top100visual', [] )
           .success(function(data) {
             $scope.storyTitles.push(data.title);
             $scope.wordCount = countWords($scope.storyTitles);
-            myName.link($scope);
+            wordCloud.link($scope);
             $scope.loading = false;
           });
     };

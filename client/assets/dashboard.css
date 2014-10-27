@@ -228,6 +228,12 @@ body {
   color: #53358F;
 }
 
+.totalDiv {
+  background-color: #ff6600;
+  border: 1px solid white;
+  padding: 3px;
+  margin: 3px;
+}
 .track {
   color: orange;
   font-size: 1.2em;

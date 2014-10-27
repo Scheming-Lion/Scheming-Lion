@@ -1,5 +1,5 @@
 angular.module('myApp.directives', [])
-  .factory('myName', function(d3Service, $interval) {
+  .factory('wordCloud', function(d3Service) {
     return {
       link: function(scope,element, attrs) {
         d3Service.d3().then(function(d3) {
@@ -63,6 +63,52 @@ angular.module('myApp.directives', [])
       restrict: 'EA',
       scope: {
         wordCount: "="
+      }
+    };
+  })
+  .factory('totalGraph', function(d3Service) {
+    return {
+      link: function(scope,element, attrs) {
+        d3Service.d3().then(function(d3) {
+
+          var total = scope.total;
+
+          var svgContainer = d3.select(".totalVisual").append("div")
+                                               .attr("class", "totalVisual")
+                                               .attr("width", 500)
+                                               .attr("height", 500);
+
+
+          var update = function(data) {
+
+            var totalVisual = svgContainer.selectAll("div")
+              .data(data);
+
+              // totalVisual.attr("class", "update");
+
+              totalVisual.enter().append("div")
+                               .attr("y", function(d, i) {
+                                 return (20 * i) + 10 + "px";
+                               })
+                               .style("width", function(d,i) {
+                                return (d[1] / 10000) + 150 + "px";
+                               })
+                               .attr("class", "totalDiv")
+                               // .attr("fill", "white")
+                               // .attr("font-size", "12px")
+                               .text(function(d) {
+                                  return d[0] + ': ' + d[2];
+                                });
+
+              totalVisual.exit().remove();
+          };
+
+          update(total);
+        });
+      },
+      restrict: 'EA',
+      scope: {
+        total: "="
       }
     };
   })

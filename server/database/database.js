@@ -181,6 +181,18 @@ module.exports.updateUser = function(user) {
     });
 };
 
+module.exports.getTotal = function(table, callback) {
+  sequelize.query('SELECT COUNT(id) AS num_rows FROM ' + table + ';')
+    .success(function(total) {
+      console.log(total);
+      callback(total[0]);
+    })
+    .error(function(error) {
+      console.log("error on getTotal");
+      console.log(error);
+    });
+};
+
 sequelize.sync();
 
 ////////////////////////////////////////////////
