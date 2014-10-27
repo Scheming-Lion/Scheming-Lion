@@ -98,11 +98,12 @@ module.exports = function(grunt) {
   // Build will fail if linting or karma fails.
   grunt.registerTask('build', ['karma'] );
 
-  // grunt deploy is for local deployment only, 
+  // grunt deploy is for testing local deployment only, 
   // because Azure is listening to
   // GitHub for merges as a means of continous integration.
   grunt.registerTask('deploy', function(n) {
       grunt.task.run(['build']);
+      grunt.task.run(['shell']);
       grunt.task.run(['server-dev']);
   });
 };
