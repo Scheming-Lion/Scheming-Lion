@@ -7,6 +7,7 @@ var app = angular.module('myApp', [
   "d3",
   "myApp.directives",
   "myApp.trackUser",
+  "myApp.trackPost",
   "myApp.home"
   ]);
 
@@ -35,6 +36,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
         'home': {
           templateUrl: 'home/home.html',
           controller: 'homeController'
+        },
+        'trackPost': {
+          templateUrl: 'trackPost/trackPost.html',
+          controller: 'trackPostController'
         }
       }
     });

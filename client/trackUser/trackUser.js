@@ -1,6 +1,6 @@
 angular.module('myApp.trackUser', [] )
 
-	.controller('trackUserController', function($scope, $http){
+	.controller('trackUserController', function($scope){
 		$scope.userToTrack;
 		$scope.userKarma;
 		$scope.userSubmitted;
@@ -10,7 +10,7 @@ angular.module('myApp.trackUser', [] )
 			var fullUrl = url.concat(user);
 			var hackerNewsRef = new Firebase(fullUrl);
 			hackerNewsRef.on('value', function (snapshot) {
-				console.log('updated' snapshot);
+				console.log('updated', snapshot);
 				$scope.userToTrack= snapshot.val().id;
 				$scope.userSubmitted = snapshot.val().submitted;
 				$scope.userKarma = snapshot.val().karma;
