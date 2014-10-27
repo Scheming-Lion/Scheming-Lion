@@ -6,7 +6,7 @@
 Developed by Adam B., Will B., Justin P., and Oleg Y.
 
 ## Technology
-This MySQL database was created with the help of Sequelize and hosted on Azure with maintenance services by CloudDB. The team chose a MySQL database because they see relational data as being key to future product features.
+This MySQL database was created with the help of Sequelize and hosted on Azure with maintenance services by CloudDB. The team chose a MySQL database because we see relational data as being key to future product features.
 
 ## Database Design
 The database is sorted into six different tables for each of the data types:
@@ -21,4 +21,4 @@ The database is sorted into six different tables for each of the data types:
 ## Table Schemas
 Table Schemas are designed to have columns that match 1-to-1 to the API's own design: https://github.com/HackerNews/API#items .
 
-All tables do not have all columns. For example, the "jobs" type does not have kids because comments are not allowed.
+Not all tables have all columns. For example, the "jobs" type does not have kids, because comments are not allowed. For more information on Hacker News' API, refer to: 
