@@ -24,7 +24,6 @@ module.exports = function(config) {
 
       // our app code to be tested
       'client/top100visual/*.js',
-      'client/topStories/*.js',
       'client/search/*.js',
       'client/main/*.js',
 
@@ -56,7 +55,6 @@ module.exports = function(config) {
     // for coverage reporting
     preprocessors: {
       'client/top100visual/*.js': 'coverage',
-      'client/topStories/*.js': 'coverage',
       'client/search/*.js': 'coverage',
       'client/main/*.js': 'coverage',
       'client/trackPost.js': 'coverage',
