@@ -66,7 +66,7 @@ angular.module('myApp.directives', [])
       }
     };
   })
-  .factory('totalGraph', function(d3Service, $interval) {
+  .factory('totalGraph', function(d3Service) {
     return {
       link: function(scope,element, attrs) {
         d3Service.d3().then(function(d3) {
