@@ -109,6 +109,23 @@ angular.module('myApp.top100visual', [] )
         case 'of':
         case 'on':
         case 'How':
+        case '2010':
+        case '2011':
+        case '2012':
+        case '2013':
+        case '2014':
+        case 'Do':
+        case 'Ask':
+        case 'Show':
+        case 'what':
+        case 'do':
+        case 'it':
+        case 'she':
+        case 'he':
+        case 'use':
+        case 'on':
+        case 'among':
+        case 'all':
           return true;
         default:
           return false;
