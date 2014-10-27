@@ -15,13 +15,15 @@ angular.module('myApp.trackPost', [] )
 			// Attach an asynchronous callback to read the data at our post reference
 			postRef.on('value', function (snapshot) {
 			  console.log(snapshot.val());
-			  $scope.loading = false;
-				$scope.show = true; 
-			  $scope.postAuthor = snapshot.val().by;
-			  var time = snapshot.val().time;
-			  var date = new Date(0);
-			  $scope.createdAt = date.setUTCSeconds(time);
-			  $scope.text = snapshot.val().text;
+			  $scope.$apply(function(){
+				  $scope.loading = false;
+					$scope.show = true; 
+				  $scope.postAuthor = snapshot.val().by;
+				  var time = snapshot.val().time;
+				  var date = new Date(0);
+				  $scope.createdAt = date.setUTCSeconds(time);
+				  $scope.text = snapshot.val().text;
+				});
 			}, function (errorObject) {
 			  console.log('The read failed: ' + errorObject.code);
 			});
