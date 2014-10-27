@@ -227,3 +227,8 @@ body {
   margin-left: 36%;
   color: #53358F;
 }
+
+.track {
+  color: orange;
+  font-size: 1.2em;
+}
