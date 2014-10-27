@@ -5,13 +5,28 @@ module.exports = function(grunt) {
 
     nodemon: {
       dev: {
-        script: 'server/server.js'
+        script: 'app.js'
       }
     },
 
     karma: {
       all: {
         configFile: 'karma.conf.js'
+      }
+    },
+
+    jshint: {
+      files: [
+        'client/**/*.js',
+        'client/*.js',
+
+      ],
+      options: {
+        force: 'false',
+        jshintrc: '.jshintrc',
+        ignores: [
+          'client/lib/**/*.js',
+        ]
       }
     },
 
@@ -28,13 +43,6 @@ module.exports = function(grunt) {
         files: [
           'server/*.js',
           'server/**/*.js',
-          //------- need to be removed? ------//
-          'scraper/*.js',
-          'scraper/*.html',
-          'scraper/client/*.js',
-          'scraper/client/*.html',
-          'scraper/client/*.html',
-          //---------------------------------//
           'client/*.html',
         ],
         tasks: ['karma']
@@ -43,6 +51,7 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-shell');
@@ -83,15 +92,18 @@ module.exports = function(grunt) {
   // Main grunt tasks
   ////////////////////////////////////////////////////
 
-  grunt.registerTask('test', ['forceOn','karma', 'forceOff', "shell"]);
+  grunt.registerTask('test', ['forceOn','karma', 'forceOff', "shell"] );
 
-  grunt.registerTask('build', []);
+  // build is automatically run by Azure in deployment.
+  // Build will fail if linting or karma fails.
+  grunt.registerTask('build', ['jshint', 'karma'] );
 
+  // grunt deploy is for testing local deployment only, 
+  // because Azure is listening to
+  // GitHub for merges as a means of continous integration.
   grunt.registerTask('deploy', function(n) {
-    if(grunt.option('prod')) {
-      // add your production server task here
-    } else {
-      // add your dev server task here
-    }
+      grunt.task.run(['build']);
+      grunt.task.run(['shell']);
+      grunt.task.run(['server-dev']);
   });
 };

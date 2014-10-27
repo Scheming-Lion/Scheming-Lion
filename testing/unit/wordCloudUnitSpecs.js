@@ -28,6 +28,10 @@ describe('top100visualController for Word Cloud feature', function() {
   //  $httpBackend.verifyNoOutstandingRequest();
   // });
 
+  it('should be true', function() {
+    expect(true).to.be.true;
+  });
+
   xit('should have a grabTitles function', function() {
     expect(grabTitles).to.be.defined;
   });
