@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-var credential = require('./databaseConfig.example.js');
+var credential = require('./databaseConfig.js');
 
 
 var databaseName = process.env.DB_NAME || credential.databaseName;
@@ -177,6 +177,18 @@ module.exports.updateUser = function(user) {
     })
     .error(function(error) {
       console.log("error on find");
+      console.log(error);
+    });
+};
+
+module.exports.getTotal = function(table, callback) {
+  sequelize.query('SELECT COUNT(id) AS num_rows FROM ' + table + ';')
+    .success(function(total) {
+      console.log(total);
+      callback(total);
+    })
+    .error(function(error) {
+      console.log("error on getTotal");
       console.log(error);
     });
 };

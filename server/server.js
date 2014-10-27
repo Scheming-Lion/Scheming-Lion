@@ -1,5 +1,4 @@
 var express = require('express');
-var Promise = require("bluebird");
 var fs = require('fs');
 var split = require('split');
 var db = require('./database/database.js');
@@ -42,6 +41,14 @@ app.use(allowCrossDomain);
 // route for the home page.
 app.get('/', function(req, res) {
   res.render('index');
+});
+
+app.post('/findTotal', function(req, res) {
+  console.log("hit");
+  console.log(req.body.search);
+  db.getTotal(req.body.search, function(total) {
+    res.send(total);
+  });
 });
 
 ///////////////////////////////////////////////////////
