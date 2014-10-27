@@ -22,7 +22,6 @@ body {
 .navbar-right{
   margin-right: -30px;
 }
-
 #wrap {
   min-height: 100%;
   height: auto;
@@ -240,4 +239,7 @@ body {
 }
 .footerLink{
   font-size: 1em;
+}
+.fork{
+  text-shadow: 0 0 1px white;
 }
