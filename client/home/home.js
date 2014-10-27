@@ -5,7 +5,7 @@ angular.module('myApp.home', [])
     $scope.total = [];
 
     $scope.getTitle = function(title, last) {
-      $http.post('http://localhost:1337/findTotal', { search: title })
+      $http.post('http://scheminglion.azurewebsites.net/findTotal', { search: title })
         .success(function(data) {
           var text = data.num_rows.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
