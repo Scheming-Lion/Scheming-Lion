@@ -15,6 +15,21 @@ module.exports = function(grunt) {
       }
     },
 
+    jshint: {
+      files: [
+        'client/**/*.js',
+        'client/*.js',
+
+      ],
+      options: {
+        force: 'false',
+        jshintrc: '.jshintrc',
+        ignores: [
+          'client/lib/**/*.js',
+        ]
+      }
+    },
+
     shell: {
         options: {
         },
@@ -36,6 +51,7 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-shell');
@@ -78,6 +94,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('test', ['forceOn','karma', 'forceOff', "shell"] );
 
+  // build is automatically run by Azure in deployment.
+  // Build will fail if linting or karma fails.
   grunt.registerTask('build', ['karma'] );
 
   // grunt deploy is for local deployment only, 
