@@ -73,31 +73,32 @@ angular.module('myApp.directives', [])
 
           var total = scope.total;
 
-          var svgContainer = d3.select(".totalVisual").append("svg")
+          var svgContainer = d3.select(".totalVisual").append("div")
                                                .attr("class", "totalVisual")
-                                               .attr("width", 1000)
-                                               .attr("height", 1000);
+                                               .attr("width", 500)
+                                               .attr("height", 500);
 
 
           var update = function(data) {
 
-            var totalVisual = svgContainer.selectAll("text")
+            var totalVisual = svgContainer.selectAll("div")
               .data(data);
 
-              totalVisual.attr("class", "update");
+              // totalVisual.attr("class", "update");
 
-              totalVisual.enter().append("text")
+              totalVisual.enter().append("div")
                                .attr("y", function(d, i) {
                                  return (20 * i) + 10 + "px";
                                })
-                               .attr("fill", "#2b3e50")
-                               .attr("font-size", "12px")
+                               .style("width", function(d,i) {
+                                return (d[1] / 10000) + 150 + "px";
+                               })
+                               .attr("class", "totalDiv")
+                               // .attr("fill", "white")
+                               // .attr("font-size", "12px")
                                .text(function(d) {
-                                  return d[0] + ': ' + d[1];
-                                })
-                               .transition()
-                                .duration( 500 )
-                                .attr("fill", "white");
+                                  return d[0] + ': ' + d[2];
+                                });
 
               totalVisual.exit().remove();
           };

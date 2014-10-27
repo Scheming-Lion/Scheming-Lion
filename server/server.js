@@ -44,8 +44,6 @@ app.get('/', function(req, res) {
 });
 
 app.post('/findTotal', function(req, res) {
-  console.log("hit");
-  console.log(req.body.search);
   db.getTotal(req.body.search, function(total) {
     res.send(total);
   });

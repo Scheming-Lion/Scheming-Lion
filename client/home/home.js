@@ -5,11 +5,12 @@ angular.module('myApp.home', [])
     $scope.total = [];
 
     $scope.getTitle = function(title, last) {
-      console.log("getting title");
       $http.post('http://localhost:1337/findTotal', { search: title })
         .success(function(data) {
-          $scope.total.push([title, data.num_rows]);
-          if (last) { totalGraph.link($scope) }
+          var text = data.num_rows.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+          $scope.total.push([title, data.num_rows, text]);
+          if (last) { totalGraph.link($scope); }
         });
     };
 
