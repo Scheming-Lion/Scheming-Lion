@@ -13,10 +13,12 @@ angular.module('myApp.trackUser', [] )
 			var hackerNewsRef = new Firebase(fullUrl);
 			hackerNewsRef.on('value', function (snapshot) {
 				console.log('updated', snapshot);
-				$scope.loading = false;
-				$scope.show = true;
-				$scope.userSubmitted = snapshot.val().submitted;
-				$scope.userKarma = snapshot.val().karma;
+				$scope.$apply(function(){
+					$scope.loading = false;
+					$scope.show = true;
+					$scope.userSubmitted = snapshot.val().submitted;
+					$scope.userKarma = snapshot.val().karma;
+				});
 			}, function (errorObject) {
 			  console.log('The read failed: ' + errorObject.code);
 			});	
