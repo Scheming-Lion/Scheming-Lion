@@ -96,7 +96,7 @@ module.exports = function(grunt) {
 
   // build is automatically run by Azure in deployment.
   // Build will fail if linting or karma fails.
-  grunt.registerTask('build', ['karma'] );
+  grunt.registerTask('build', ['jshint', 'karma'] );
 
   // grunt deploy is for testing local deployment only, 
   // because Azure is listening to
