@@ -76,18 +76,15 @@ module.exports = function(grunt) {
   // Main grunt tasks
   ////////////////////////////////////////////////////
 
-  grunt.registerTask( 'test', ['forceOn','karma', 'forceOff', "shell"] );
+  grunt.registerTask('test', ['forceOn','karma', 'forceOff', "shell"] );
 
-  grunt.registerTask('build', [] );
+  grunt.registerTask('build', ['karma'] );
 
+  // grunt deploy is for local deployment only, 
+  // because Azure is listening to
+  // GitHub for merges as a means of continous integration.
   grunt.registerTask('deploy', function(n) {
-    if( grunt.option('prod') ) {
-      // add your production server task here
-      grunt.registerTask(['build']);
-    } else {
-      // add your dev server task here
       grunt.task.run(['build']);
       grunt.task.run(['server-dev']);
-    }
   });
 };

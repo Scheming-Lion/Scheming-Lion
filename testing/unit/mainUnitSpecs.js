@@ -15,7 +15,7 @@ describe('mainController in main.js', function() {
     });
   }));
 
-  it('should have a search property set to false', function() {
+  xit('should have a search property set to false', function() {
     expect(scope.search).to.exist;
   });
 
