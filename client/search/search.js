@@ -9,7 +9,6 @@ angular.module('myApp.search', [] )
 		};
 			searchObject.fetchData = function(userName){	
 				return new Promise(function(resolve, reject){
-				console.log('Username', userName)
 				$http({
 					method: 'GET',
 					url: searchObject.url + "/user/" + userName + ".json",
@@ -34,8 +33,6 @@ angular.module('myApp.search', [] )
 								var sortedStories = stories.sort(searchObject.sort);
 								var topStoriesArray = sortedStories.slice(0,10);
 								searchObject.topStories.data = topStoriesArray;
-								console.log(searchObject.topStories.data);		
-								// resolve(searchObject.topStories.data);
 								resolve();
 							}
 						})

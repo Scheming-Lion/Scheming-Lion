@@ -92,7 +92,7 @@ body {
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
   color: #fff;
-  background-color: #ff6600;
+  background-color: #2b3e50;
 }
 
 
@@ -242,4 +242,7 @@ body {
 }
 .fork{
   text-shadow: 0 0 1px white;
+}
+.update {
+  color: #FF6600;
 }
