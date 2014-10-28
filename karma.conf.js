@@ -21,6 +21,11 @@ module.exports = function(config) {
       'node_modules/jquery/dist/jquery.min.js',
       'node_modules/requirejs/require.js',
       'client/lib/angular-mocks/angular-mocks.js',
+      "https://cdn.firebase.com/libs/angularfire/0.8.2/angularfire.min.js",
+      "https://cdn.firebase.com/js/client/1.0.21/firebase.js",
+      'client/app/*.js',
+      'client/main/main.html',
+
 
       // our app code to be tested
       'client/top100visual/*.js',
