@@ -2,6 +2,7 @@ var express = require('express');
 var fs = require('fs');
 var split = require('split');
 var db = require('./database/database.js');
+var queries = require('./queries.js');
 var https = require('https');
 var bodyParser = require('body-parser');
 var StringDecoder = require('string_decoder').StringDecoder;
@@ -41,6 +42,50 @@ app.use(allowCrossDomain);
 // route for the home page.
 app.get('/', function(req, res) {
   res.render('index');
+});
+
+/*
+  SELECT a.*
+  FROM storiestable as a
+  WHERE a.date > ((((today - 1 week))))  (Pseudo code!!!)
+  LIMIT 100;
+*/
+
+// API calls to data base helper functions.
+app.get('/api/getstories', function(req, res) {
+  queries.getStory(function(item) {
+    res.status(200).send(item);
+  });
+});
+
+app.get('/api/getcomments/', function(req, res) {
+  queries.getComment(id, function(item) {
+    res.status(200).send(item);
+  });
+});
+
+app.get('/api/getjobs', function(req, res) {
+  queries.getJob(id, function(item) {
+    res.status(200).send(item);
+  });
+});
+
+app.get('/api/getpolls', function(req, res) {
+  queries.getPoll(id, function(item) {
+    res.status(200).send(item);
+  });
+});
+
+app.get('/api/getpolloptions', function(req, res) {
+  queries.getPollOptions(id, function(item) {
+    res.status(200).send(item);
+  });
+});
+
+app.get('/api/getusers', function(req, res) {
+  queries.getUser(id, function(item) {
+    res.status(200).send(item);
+  });
 });
 
 app.post('/findTotal', function(req, res) {
