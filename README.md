@@ -2,12 +2,6 @@
 
 > The Hacker News Dashboard is a full-stack web application which utilizes the Hacker News API to provide a dashboard for data analysis and visualization.
 
-## Team
-
-  - __Product Owner__: Will Burgo
-  - __Scrum Master__: Adam Back - "If this were a drug deal, Will, I'd have to shoot you in the face. Next time fucking cut a new branch and just check the fucking code goddammit!!!!"
-  - __Development Team Members__: Oleg Yanchinskiy, Justin Pinili
-
 ## Table of Contents
 
 1. [Usage](#Usage)
