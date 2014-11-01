@@ -5,46 +5,46 @@ module.exports.getStory = function(callback) {
   db.Story
   .findAll({where: {id: {lte: 50}}})
   .success(function(story) {
-    callback(story.values);
+    callback(story);
   })
 }
 
-module.exports.getComment = function(id, callback) {
+module.exports.getComment = function(callback) {
   db.Comment
   .findAll({where: {id: {lte: 50}}})
   .success(function(comment) {
-    callback(comment.values);
+    callback(comment);
   })
 }
-module.exports.getJob = function(id, callback) {
+module.exports.getJob = function(callback) {
   db.Job
   .findAll({where: {id: {lte: 50}}})
   .success(function(job) {
-    callback(job.values);
+    callback(job);
   })
 }
 
-module.exports.getPoll = function(id, callback) {
+module.exports.getPoll = function(callback) {
   db.Poll
   .findAll({where: {id: {lte: 50}}})
   .success(function(poll) {
-    callback(poll.values);
+    callback(poll);
   })
 }
 
-module.exports.getPollOption = function(id, callback) {
+module.exports.getPollOption = function(callback) {
   db.PollOption
   .findAll({where: {id: {lte: 50}}})
   .success(function(polloptions) {
-    callback(polloptions.values);
+    callback(polloptions);
   })
 }
 
-module.exports.getUser = function(id, callback) {
+module.exports.getUser = function(callback) {
   db.User
   .findAll({where: {id: {lte: 50}}})
   .success(function(user) {
-    callback(user.values);
+    callback(user);
   })
 }
 

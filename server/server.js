@@ -44,13 +44,6 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
-/*
-  SELECT a.*
-  FROM storiestable as a
-  WHERE a.date > ((((today - 1 week))))  (Pseudo code!!!)
-  LIMIT 100;
-*/
-
 // API calls to data base helper functions.
 app.get('/api/getstories', function(req, res) {
   queries.getStory(function(item) {
