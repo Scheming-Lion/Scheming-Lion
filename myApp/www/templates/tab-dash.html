@@ -19,10 +19,10 @@
       <a class="button"><h5> Last month </h5></a>
     </div>
     <div class="list card">
-      <div class="item item-text-wrap" ng-repeat="story in seedData">
+      <div class="item item-text-wrap" ng-repeat="story in stories">
         <p>
-          [ {{ story.points }} ] <a href="{{ story.link }}">  {{ story.title }} ( {{ story.site }} ) </a>
-          By {{ story.user }} {{ story.time }} <!-- | <a href="#"> 45 comments </a> -->
+          [ {{ story.score }} ] <a href="{{ story.url }}">  {{ story.title }} </a>
+          By {{ story.by }} <!-- {{ story.time }}  | <a href="#"> 45 comments </a> -->
         </p>
       </div>
 
